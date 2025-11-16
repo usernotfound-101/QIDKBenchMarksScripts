@@ -1,0 +1,5 @@
+model,answered,total,coverage,precision,recall,f1,note
+gemma-3-4b-it-q4_0.gguf,2,10,2/10,0.5,0.1,0.16666666666666669,fallback_metrics
+qwen3-4b-instruct-2507-q4km.gguf,2,10,2/10,0.0,0.0,0.0,fallback_metrics
+Llama-3.2-1B-Instruct-Q4_0.gguf,2,10,2/10,0.0,0.0,0.0,fallback_metrics
+phi-3.5-mini-instruct.Q4_K_M.gguf,2,10,2/10,0.0,0.0,0.0,fallback_metrics
