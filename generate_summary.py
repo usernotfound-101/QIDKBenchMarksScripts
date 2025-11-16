@@ -56,13 +56,13 @@ def generate_summary_with_slm(article_text):
         article_text: The article text to summarize
     
     Returns:
-        Generated summary text
+        Tuple of (summary_text, logs)
     """
     # Escape single quotes in the article text for shell
     escaped_text = article_text.replace("'", "'\\''")
     
-    # Create the prompt with proper quoting - keep it short and direct
-    prompt = f'"Summarize this article briefly: {escaped_text}"'
+    # Create the prompt requesting tagged output for easy parsing
+    prompt = f'"Summarize this article briefly and wrap your summary with [summary begin] and [summary end] tags: {escaped_text}"'
     
     # Build the command with token limit to force shorter responses
     # -n 300 limits output to ~200 words (1.5 tokens per word average)
@@ -80,34 +80,31 @@ def generate_summary_with_slm(article_text):
         
         if result.returncode == 0:
             output = result.stdout.strip()
+            logs = result.stderr.strip()  # Capture stderr logs
             
-            # Remove the prompt if it appears in the output
-            # Sometimes models echo the prompt before generating
-            if "Summarize this article briefly:" in output:
-                # Find where the actual response starts
-                parts = output.split("Summarize this article briefly:", 1)
-                if len(parts) > 1:
-                    output = parts[1].strip()
+            # Parse the summary between [summary begin] and [summary end] tags
+            begin_tag = "[summary begin]"
+            end_tag = "[summary end]"
             
-            # Also try to remove any quoted version of the article from output
-            if escaped_text[:100] in output:
-                # Try to extract only the summary part
-                lines = output.split('\n')
-                # Skip lines that look like they're part of the original article
-                summary_lines = []
-                for line in lines:
-                    if line.strip() and not any(marker in line for marker in ['By .', 'PUBLISHED:', 'UPDATED:']):
-                        summary_lines.append(line)
-                output = '\n'.join(summary_lines)
-            
-            return output.strip()
+            if begin_tag in output and end_tag in output:
+                # Extract only the content between the tags
+                start_idx = output.find(begin_tag) + len(begin_tag)
+                end_idx = output.find(end_tag)
+                summary = output[start_idx:end_idx].strip()
+                return summary, logs
+            else:
+                # Fallback: if tags not found, return the whole output
+                print(f"  Warning: Summary tags not found in output, using full response")
+                return output.strip(), logs
         else:
-            print(f"Error running SLM: {result.stderr}")
-            return "Error generating summary"
+            error_msg = f"Error running SLM: {result.stderr}"
+            print(error_msg)
+            return "Error generating summary", result.stderr
     
     except Exception as e:
-        print(f"Error running SLM: {e}")
-        return "Error generating summary"
+        error_msg = f"Error running SLM: {e}"
+        print(error_msg)
+        return "Error generating summary", str(e)
 
 
 def main():
@@ -154,17 +151,18 @@ def main():
         
         # Generate summary using SLM
         print(f"  Generating summary with SLM...")
-        summary = generate_summary_with_slm(article_content)
+        summary, logs = generate_summary_with_slm(article_content)
         
         # Get corresponding highlight
         highlight = highlights_dict.get(article_num, "No highlight available")
         
-        # Create result object
+        # Create result object with logs
         result = {
             "article_number": article_num,
             "highlight": highlight,
             "generated_summary": summary,
-            "article_text": article_content
+            "article_text": article_content,
+            "generation_logs": logs
         }
         
         results.append(result)
