@@ -56,17 +56,17 @@ def generate_summary_with_slm(article_text):
         article_text: The article text to summarize
     
     Returns:
-        Tuple of (summary_text, logs)
+        Tuple of (summary_text, logs, raw_output)
     """
     # Escape single quotes in the article text for shell
     escaped_text = article_text.replace("'", "'\\''")
     
-    # Create the prompt requesting tagged output for easy parsing
-    prompt = f'"Summarize this article briefly and wrap your summary with [summary begin] and [summary end] tags: {escaped_text}"'
+    # Create the prompt with task tags and requesting tagged output
+    prompt = f'"{{task begin}}Summarize this article briefly and wrap your summary with [summary begin] and [summary end] tags{{task end}}: {escaped_text}"'
     
     # Build the command with token limit to force shorter responses
-    # -n 300 limits output to ~200 words (1.5 tokens per word average)
-    cmd = f"./crun-cli.sh -no-cnv -n 300 -p '{prompt}'"
+    # -n 400 limits output to ~300 words, giving model room to generate actual summary
+    cmd = f"./crun-cli.sh -no-cnv -n 400 -p '{prompt}'"
     
     try:
         # Run the command and capture output - NO TIMEOUT
@@ -79,32 +79,55 @@ def generate_summary_with_slm(article_text):
         )
         
         if result.returncode == 0:
-            output = result.stdout.strip()
+            raw_output = result.stdout
             logs = result.stderr.strip()  # Capture stderr logs
             
-            # Parse the summary between [summary begin] and [summary end] tags
-            begin_tag = "[summary begin]"
-            end_tag = "[summary end]"
+            # Clean the output similar to generate_qna.py
+            content = raw_output
             
-            if begin_tag in output and end_tag in output:
-                # Extract only the content between the tags
-                start_idx = output.find(begin_tag) + len(begin_tag)
-                end_idx = output.find(end_tag)
-                summary = output[start_idx:end_idx].strip()
-                return summary, logs
+            # 1. Remove all newlines
+            content = content.replace('\n', '')
+            
+            # 2. Remove '> ' prompts
+            content = content.replace('> ', '')
+            
+            # 3. Remove 'EOF by user'
+            content = re.sub(r'EOF by user.*', '', content, flags=re.IGNORECASE)
+            
+            # 4. Remove {task begin} ... {task end} blocks (the instruction/prompt)
+            content = re.sub(r'\{task begin\}.*?\{task end\}', '', content, flags=re.IGNORECASE)
+            
+            # 5. Add newline around [ ] for easier parsing
+            content = content.replace('[', '\n[').replace(']', ']\n')
+            
+            # 5. Collapse multiple spaces
+            content = re.sub(r'\s+', ' ', content)
+            
+            # 6. Extract [summary begin] ... [summary end] block
+            # Use case-insensitive search and handle variations
+            match = re.search(r'\[summary begin\](.*?)\[/?summary end\]', content, flags=re.IGNORECASE | re.DOTALL)
+            
+            if match:
+                summary = match.group(1).strip()
+                return summary, logs, raw_output
             else:
-                # Fallback: if tags not found, return the whole output
-                print(f"  Warning: Summary tags not found in output, using full response")
-                return output.strip(), logs
+                # Fallback: if tags not found, return cleaned content
+                print(f"  Warning: Summary tags not found in output, using cleaned response")
+                # Remove the prompt if it's echoed back
+                if "Summarize this article briefly" in content:
+                    parts = content.split("Summarize this article briefly", 1)
+                    if len(parts) > 1:
+                        content = parts[1].strip()
+                return content.strip(), logs, raw_output
         else:
             error_msg = f"Error running SLM: {result.stderr}"
             print(error_msg)
-            return "Error generating summary", result.stderr
+            return "Error generating summary", result.stderr, result.stdout
     
     except Exception as e:
         error_msg = f"Error running SLM: {e}"
         print(error_msg)
-        return "Error generating summary", str(e)
+        return "Error generating summary", str(e), ""
 
 
 def main():
@@ -151,18 +174,19 @@ def main():
         
         # Generate summary using SLM
         print(f"  Generating summary with SLM...")
-        summary, logs = generate_summary_with_slm(article_content)
+        summary, logs, raw_output = generate_summary_with_slm(article_content)
         
         # Get corresponding highlight
         highlight = highlights_dict.get(article_num, "No highlight available")
         
-        # Create result object with logs
+        # Create result object with logs and raw output
         result = {
             "article_number": article_num,
             "highlight": highlight,
             "generated_summary": summary,
             "article_text": article_content,
-            "generation_logs": logs
+            "generation_logs": logs,
+            "raw_model_output": raw_output
         }
         
         results.append(result)
