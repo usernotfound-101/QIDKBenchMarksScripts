@@ -62,7 +62,7 @@ def generate_summary_with_slm(article_text):
     escaped_text = article_text.replace("'", "'\\''")
     
     # Create the prompt with task tags and requesting tagged output
-    prompt = f'"{{task begin}}Summarize this article briefly and wrap your summary with [summary begin] and [summary end] tags{{task end}}: {escaped_text}"'
+    prompt = f'"{{task begin}}Summarize this article briefly in 3-5 sentences, like \"X did this, Y did that\", and wrap your summary with [summary begin] and [summary end] tags{{task end}}: {escaped_text}"'
     
     # Build the command with token limit to force shorter responses
     # -n 400 limits output to ~300 words, giving model room to generate actual summary
