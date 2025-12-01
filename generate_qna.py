@@ -1,311 +1,243 @@
 #!/usr/bin/env python3
 """
-squad_batch_processor_safe.py
+squad_benchmark_adb_batches.py
 
-Complete batch processing system:
-1. Generate multiple batches of 10 questions each
-2. Run each batch through the model
-3. Parse all results safely (ignoring instruction blocks)
+Automates SQuAD batch processing on Android via ADB:
+1. Generate question batches from SQuAD
+2. Create prompts that ask the model to answer questions
+3. Push each batch to the phone
+4. Run llama-cli per batch with JSON output
+5. Pull all batch results and merge locally
 """
 
 import os
-import sys
 import json
-import hashlib
-import re
-import subprocess
 import random
+import subprocess
 from datasets import load_dataset
+from collections import defaultdict
 
-# ----------- CONFIG -----------
-MODEL = "Llama-3.2-1B-Instruct-Q4_0.gguf"
-DEVICE = "HTP0"
-CRUN_CMD = "./crun-cli.sh"
+# ---------------- CONFIG ----------------
+PHONE_TMP_DIR = "/data/local/tmp"
+MODEL_PATH = os.path.join(PHONE_TMP_DIR, "gguf/phi-3.5-mini-instruct.Q4_K_M.gguf")
+LLAMA_BIN_DIR = os.path.join(PHONE_TMP_DIR, "llama/build-clblast/bin")
+LLAMA_CLI_PATH = "./llama-cli"
+LOG_FILE = os.path.join(PHONE_TMP_DIR, "logs.txt")
 BATCH_SIZE = 10
-BATCHES_DIR = "batches"
-OUTPUTS_DIR = "outputs"
-FINAL_OUTPUT = "final_output.jsonl"
-# ------------------------------
+NUM_BATCHES = 3
+# ----------------------------------------
 
-def sha256(s: str) -> str:
-    return hashlib.sha256(s.encode('utf-8')).hexdigest()
-
-def ensure_dirs():
-    os.makedirs(BATCHES_DIR, exist_ok=True)
-    os.makedirs(OUTPUTS_DIR, exist_ok=True)
-
-# ------------------- GENERATE -------------------
-# ------------------- GENERATE -------------------
-def generate_batches(num_batches):
-    ensure_dirs()
-    
-    print("\nLoading SQuAD validation split...")
+def generate_batches(num_batches=NUM_BATCHES, batch_size=BATCH_SIZE):
+    print("Loading SQuAD validation split...")
     ds = load_dataset("squad", split="validation")
 
-    # --------- Group by context (topics) ---------
-    from collections import defaultdict
     context_to_questions = defaultdict(list)
     for item in ds:
-        context = item["context"]
-        context_to_questions[context].append(item)
+        context_to_questions[item["context"]].append(item)
 
     topics = list(context_to_questions.keys())
 
-    print(f"Generating {num_batches} batches of {BATCH_SIZE} questions each...")
-    all_metadata = []
-
-    for batch_num in range(num_batches):
-        # Pick a random topic for this batch
+    batches = []
+    q_counter = 1
+    for batch_idx in range(num_batches):
         topic = random.choice(topics)
-        questions_in_topic = context_to_questions[topic]
+        items = random.sample(context_to_questions[topic], min(batch_size, len(context_to_questions[topic])))
+        batch_data = []
+        for item in items:
+            qid = f"q{q_counter:04d}"
+            q_counter += 1
+            batch_data.append({
+                "id": qid,
+                "question": item["question"].strip(),
+                "context": item["context"].strip(),
+                "answers": item["answers"]  # Ground truth for later evaluation
+            })
+        batches.append(batch_data)
+    print(f"✓ Generated {num_batches} batches with {batch_size} questions each")
+    return batches
 
-        # Sample questions from this topic (without replacement)
-        batch_items = random.sample(
-            questions_in_topic,
-            min(BATCH_SIZE, len(questions_in_topic))
-        )
+def create_prompt_for_batch(batch_data):
+    """Create a prompt that asks the model to answer questions based on context"""
+    prompt = """Answer each question using only information from the provided context. Give short, direct answers.
 
-        batch_questions = []
-        batch_expected = []
-
-        batch_file = os.path.join(BATCHES_DIR, f"batch_{batch_num+1:03d}.txt")
-
-        with open(batch_file, 'w', encoding='utf-8') as f:
-            for item in batch_items:
-                q = item.get("question", "").strip()
-                context = item.get("context", "").strip()  # <-- include context
-                expected = item.get("answers", {}).get("text", [""])[0]
-
-                batch_questions.append(q)
-                batch_expected.append(expected)
-
-                formatted = (
-                    f"{{question start}}{q}{{question end}} "
-                    f"{{context start}}{context}{{context end}} "
-                    f"{{requirement start}}Answer concisely and in a single sentence. "
-                    f"Wrap your answer between [answer start] and [answer end] exactly THIS IS A REQUIREMENT YOU MUST FOLLOW, WRAP YOU ANSWER WITH THESE TAGS COMPULSARILY.{{requirement end}}\n"
-                )
-                f.write(formatted)
-
-        metadata = {
-            "batch_num": batch_num + 1,
-            "topic": topic,
-            "questions": batch_questions,
-            "expected_answers": batch_expected
-        }
-        all_metadata.append(metadata)
-
-        print(f"  ✓ Batch {batch_num+1:03d}: {len(batch_questions)} questions from topic -> {batch_file}")
-
-    # Save metadata
-    metadata_file = os.path.join(BATCHES_DIR, "metadata.json")
-    with open(metadata_file, 'w', encoding='utf-8') as f:
-        json.dump(all_metadata, f, ensure_ascii=False, indent=2)
-
-    print(f"\n✓ Generated {num_batches} batches")
-    print(f"✓ Metadata saved to: {metadata_file}")
-    print(f"\nNext step: Run batches")
-    print(f"  python3 {sys.argv[0]} run")
-
-
-
-# ------------------- RUN -------------------
-def run_batches():
-    ensure_dirs()
+"""
     
-    if not os.path.exists(BATCHES_DIR):
-        print(f"Error: {BATCHES_DIR} directory not found!")
-        return False
+    for item in batch_data:
+        prompt += f"[Question {item['id']}]\n"
+        prompt += f"Context: {item['context']}\n"
+        prompt += f"Question: {item['question']}\n"
+        prompt += f"Answer: <your answer here>\n\n"
     
-    batch_files = sorted(f for f in os.listdir(BATCHES_DIR) if f.startswith('batch_') and f.endswith('.txt'))
+    return prompt
+
+def push_batch_to_phone(batch_data, batch_idx):
+    # Save the batch data with ground truth for later evaluation
+    batch_file = f"batch_{batch_idx+1:03d}_data.json"
+    with open(batch_file, "w", encoding="utf-8") as f:
+        json.dump(batch_data, f, ensure_ascii=False, indent=2)
     
-    if not batch_files:
-        print("No batch files found!")
-        return False
+    # Create the prompt file
+    prompt = create_prompt_for_batch(batch_data)
+    local_prompt_file = f"batch_{batch_idx+1:03d}_prompt.txt"
+    with open(local_prompt_file, "w", encoding="utf-8") as f:
+        f.write(prompt)
+
+    remote_prompt_file = os.path.join(PHONE_TMP_DIR, f"prompts_batch_{batch_idx+1:03d}.txt")
+    subprocess.run(["adb", "push", local_prompt_file, remote_prompt_file], check=True)
+    print(f"✓ Pushed batch {batch_idx+1} to phone at {remote_prompt_file}")
+    return remote_prompt_file
+
+def run_llama_batch_on_phone(remote_prompt_file, batch_idx):
+    remote_result_file = os.path.join(PHONE_TMP_DIR, f"results_batch_{batch_idx+1:03d}.txt")
     
-    print(f"\nFound {len(batch_files)} batches to process")
+    json_schema = json.dumps({
+        "type": "object",
+        "properties": {
+            "answers": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "answer": {"type": "string"}
+                    },
+                    "required": ["id", "answer"]
+                }
+            }
+        },
+        "required": ["answers"]
+    })
     
-    env = os.environ.copy()
-    env["M"] = MODEL
-    env["D"] = DEVICE
+    # Simple redirection - stdout (model output) goes to file, stderr (logs) stays on terminal
+    adb_cmd = (
+        f"cd {LLAMA_BIN_DIR} && "
+        f"export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH && "
+        f"{LLAMA_CLI_PATH} "
+        f"-m {MODEL_PATH} "
+        f"-c 8192 "
+        f"-n 2048 "
+        f"-t 4 "
+        f"-no-cnv "
+        f"--temp 0.1 "
+        f"--top-p 0.9 "
+        f"--json-schema '{json_schema}' "
+        f"--file {remote_prompt_file} "
+        f"> {remote_result_file}"
+    )
     
-    successful = 0
-    failed = 0
+    print(f"Running llama-cli for batch {batch_idx+1}...")
+    result = subprocess.run(["adb", "shell", adb_cmd], capture_output=True, text=True)
     
-    for batch_file in batch_files:
-        batch_path = os.path.join(BATCHES_DIR, batch_file)
-        batch_name = batch_file.replace('.txt', '')
-        output_path = os.path.join(OUTPUTS_DIR, f"{batch_name}_output.txt")
-        
-        print(f"Processing {batch_file}...")
-        
+    if result.returncode != 0:
+        print(f"Error running llama-cli:")
+        print(f"STDOUT: {result.stdout}")
+        print(f"STDERR: {result.stderr}")
+        raise subprocess.CalledProcessError(result.returncode, adb_cmd)
+    
+    # Print the runtime logs that went to stderr
+    if result.stderr:
+        print(f"\nRuntime logs for batch {batch_idx+1}:")
+        print(result.stderr)
+    
+    print(f"✓ Ran llama-cli for batch {batch_idx+1}, output saved to {remote_result_file}")
+    return remote_result_file
+
+def pull_batch_results(remote_result_file, batch_idx):
+    # Pull just the model output (clean JSON)
+    local_result = f"results_batch_{batch_idx+1:03d}.json"
+    subprocess.run(["adb", "pull", remote_result_file, local_result], check=True)
+    
+    print(f"✓ Pulled batch {batch_idx+1} results to {local_result}")
+    
+    return local_result
+
+def extract_json_from_output(content):
+    """Extract JSON from model output that may contain other text like the prompt"""
+    import re
+    
+    # Look for JSON object pattern
+    json_match = re.search(r'\{.*\}', content, re.DOTALL)
+    if json_match:
         try:
-            with open(batch_path, 'r') as input_f, open(output_path, 'w') as output_f:
-                subprocess.run([CRUN_CMD], stdin=input_f, stdout=output_f, stderr=subprocess.PIPE,
-                               env=env, timeout=600)
+            json_str = json_match.group(0)
+            return json.loads(json_str)
+        except json.JSONDecodeError:
+            pass
+    
+    # If no valid JSON found, return None
+    return None
+
+def merge_batch_results(json_files):
+    """Merge all JSON result files"""
+    merged = {"answers": []}
+    
+    for f in json_files:
+        try:
+            with open(f, "r", encoding="utf-8") as fin:
+                content = fin.read()
             
-            if os.path.exists(output_path) and os.path.getsize(output_path) > 0:
-                print(f"  ✓ Output saved to {output_path}")
-                successful += 1
+            # Extract JSON (in case there's prompt echo before it)
+            data = extract_json_from_output(content)
+            
+            if data and "answers" in data:
+                merged["answers"].extend(data["answers"])
+                print(f"✓ Merged {len(data['answers'])} answers from {f}")
             else:
-                print(f"  ✗ No output generated")
-                failed += 1
-        except subprocess.TimeoutExpired:
-            print(f"  ✗ Timeout (batch took > 10 minutes)")
-            failed += 1
+                print(f"⚠ Warning: No valid JSON found in {f}")
+                print(f"  Content preview: {content[:300]}")
+                
         except Exception as e:
-            print(f"  ✗ Error: {str(e)[:50]}")
-            failed += 1
+            print(f"⚠ Warning: Could not process {f}: {e}")
     
-    print(f"\n{'='*70}")
-    print(f"Batch processing complete: Successful={successful}, Failed={failed}")
-    return successful > 0
-
-# ------------------- SAFE PARSER -------------------
-def remove_curly_blocks(text: str) -> str:
-    """
-    Remove all {...} blocks sequentially, ignoring nested braces.
-    """
-    result = []
-    i = 0
-    while i < len(text):
-        if text[i] == '{':
-            j = text.find('}', i + 1)
-            if j == -1:
-                break
-            i = j + 1
-        else:
-            result.append(text[i])
-            i += 1
-    return ''.join(result)
-
-def parse_batch_content(content, metadata):
-    """
-    Parse a single batch output file and safely extract answer blocks.
-    Cleans content similarly to the standalone script:
-      - Remove all newlines
-      - Remove '> ' prompts
-      - Remove {question…}, {context…}, and {requirement…} blocks entirely
-      - Remove 'EOF by user'
-      - Add newlines around { } and [ ] (optional for readability)
-      - Collapse multiple spaces
-      - Extract [answer start] ... [answer end] blocks in order
-    """
-    questions = metadata['questions']
-    expected_answers = metadata['expected_answers']
-
-    # 1. Remove all newlines
-    content = content.replace('\n', '')
-
-    # 2. Remove '> ' prompts
-    content = content.replace('> ', '')
-
-    # 3. Remove 'EOF by user'
-    content = re.sub(r'EOF by user.*', '', content, flags=re.IGNORECASE)
-
-    # 4. Remove {question}, {context}, {requirement} blocks
-    content = re.sub(r'\{question start\}.*?\{question end\}', '', content, flags=re.IGNORECASE)
-    content = re.sub(r'\{context start\}.*?\{context end\}', '', content, flags=re.IGNORECASE)
-    content = re.sub(r'\{requirement start\}.*?\{requirement end\}', '', content, flags=re.IGNORECASE)
-
-    # 5. Optional: add newline before/after { } and [ ] for readability
-    content = content.replace('{', '\n{').replace('}', '}\n')
-    content = content.replace('[', '\n[').replace(']', ']\n')
-
-    # 6. Collapse multiple spaces
-    content = re.sub(r'\s+', ' ', content)
-
-    # 7. Extract all [answer start] ... [answer end] blocks
-    answer_blocks = re.findall(r'\[answer start\].*?\[/?answer end\]', content, flags=re.IGNORECASE)
-
-    results = []
-    for i, q in enumerate(questions):
-        if i < len(answer_blocks):
-            answer = answer_blocks[i].strip()
-        else:
-            answer = "[NOT FOUND]"
-        results.append({
-            "question": q,
-            "answer": answer,
-            "expected": expected_answers[i],
-            "hash": sha256(q + expected_answers[i])
-        })
-
-    return results
-
-def parse_batches():
-    ensure_dirs()
-    metadata_file = os.path.join(BATCHES_DIR, "metadata.json")
-    
-    if not os.path.exists(metadata_file):
-        print(f"Error: {metadata_file} not found!")
-        return
-    
-    with open(metadata_file, 'r', encoding='utf-8') as f:
-        all_metadata = json.load(f)
-    
-    output_files = sorted(f for f in os.listdir(OUTPUTS_DIR) if f.endswith('_output.txt'))
-    
-    if not output_files:
-        print("No output files found!")
-        return
-    
-    all_results = []
-    
-    for output_file in output_files:
-        match = re.search(r'batch_(\d+)_output\.txt', output_file)
-        if not match:
-            continue
-        batch_num = int(match.group(1))
-        metadata = next((m for m in all_metadata if m['batch_num']==batch_num), None)
-        if not metadata:
-            continue
-        
-        output_path = os.path.join(OUTPUTS_DIR, output_file)
-        with open(output_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        results = parse_batch_content(content, metadata)
-        all_results.extend(results)
-    
-    # Write final JSONL
-    with open(FINAL_OUTPUT, 'w', encoding='utf-8') as f:
-        for rec in all_results:
-            f.write(json.dumps(rec, ensure_ascii=False) + '\n')
-    
-    print(f"\nParsing complete. Output: {FINAL_OUTPUT}")
-    print(f"Total Q&A pairs: {len(all_results)}")
-
-# ------------------- MAIN -------------------
-def print_usage():
-    print("SQuAD Batch Processor Safe")
-    print("=" * 70)
-    print(f"Usage:")
-    print(f"  {sys.argv[0]} generate <num_batches>  - Generate batch files")
-    print(f"  {sys.argv[0]} run                     - Run all batches through model")
-    print(f"  {sys.argv[0]} parse                   - Parse results into JSONL")
+    merged_file = "results_all_batches.json"
+    with open(merged_file, "w", encoding="utf-8") as fout:
+        json.dump(merged, fout, ensure_ascii=False, indent=2)
+    print(f"\n✓ Merged all batch results into {merged_file}")
+    return merged_file
 
 def main():
-    if len(sys.argv) < 2:
-        print_usage()
-        sys.exit(1)
+    batches = generate_batches()
+    json_files = []
+
+    for idx, batch_data in enumerate(batches):
+        print(f"\n{'='*60}")
+        print(f"Processing batch {idx+1}/{len(batches)}")
+        print(f"{'='*60}")
+        
+        # Push prompt to phone
+        remote_prompt = push_batch_to_phone(batch_data, idx)
+        
+        # Run llama-cli on phone (logs will print to console via stderr)
+        remote_result = run_llama_batch_on_phone(remote_prompt, idx)
+        
+        # Pull clean JSON output from phone
+        local_json = pull_batch_results(remote_result, idx)
+        
+        json_files.append(local_json)
+
+    # Merge all JSON results
+    merged_file = merge_batch_results(json_files)
+
+    # Print summary
+    print(f"\n{'='*60}")
+    print("SUMMARY")
+    print(f"{'='*60}")
     
-    cmd = sys.argv[1].lower()
-    
-    if cmd == "generate":
-        if len(sys.argv) < 3:
-            print("Specify number of batches")
-            sys.exit(1)
-        generate_batches(int(sys.argv[2]))
-    elif cmd == "run":
-        if not run_batches():
-            sys.exit(1)
-    elif cmd == "parse":
-        parse_batches()
-    else:
-        print(f"Unknown command '{cmd}'")
-        print_usage()
-        sys.exit(1)
+    try:
+        with open(merged_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if data["answers"]:
+            print(f"\n✓ Total answers generated: {len(data['answers'])}")
+            print(f"\nSample answers (first 3):")
+            for i, answer in enumerate(data["answers"][:3]):
+                print(f"\n{i+1}. ID: {answer['id']}")
+                print(f"   Answer: {answer['answer']}")
+            print(f"\n{'='*60}")
+            print(f"Results saved to: {merged_file}")
+        else:
+            print("\n⚠ Warning: No answers were generated!")
+    except Exception as e:
+        print(f"\n⚠ Error reading merged results: {e}")
 
 if __name__ == "__main__":
     main()

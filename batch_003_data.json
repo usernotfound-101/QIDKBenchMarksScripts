@@ -1,0 +1,70 @@
+[
+  {
+    "id": "q0011",
+    "question": "The function of long-lived memory cells is an example of what kind of immune response?",
+    "context": "When B cells and T cells are activated and begin to replicate, some of their offspring become long-lived memory cells. Throughout the lifetime of an animal, these memory cells remember each specific pathogen encountered and can mount a strong response if the pathogen is detected again. This is \"adaptive\" because it occurs during the lifetime of an individual as an adaptation to infection with that pathogen and prepares the immune system for future challenges. Immunological memory can be in the form of either passive short-term memory or active long-term memory.",
+    "answers": {
+      "text": [
+        "adaptive",
+        "adaptive",
+        "strong response"
+      ],
+      "answer_start": [
+        296,
+        296,
+        236
+      ]
+    }
+  },
+  {
+    "id": "q0012",
+    "question": "Immunological memory can take what two forms?",
+    "context": "When B cells and T cells are activated and begin to replicate, some of their offspring become long-lived memory cells. Throughout the lifetime of an animal, these memory cells remember each specific pathogen encountered and can mount a strong response if the pathogen is detected again. This is \"adaptive\" because it occurs during the lifetime of an individual as an adaptation to infection with that pathogen and prepares the immune system for future challenges. Immunological memory can be in the form of either passive short-term memory or active long-term memory.",
+    "answers": {
+      "text": [
+        "passive short-term memory or active long-term memory",
+        "passive short-term memory or active long-term memory",
+        "passive short-term memory or active long-term memory"
+      ],
+      "answer_start": [
+        514,
+        514,
+        514
+      ]
+    }
+  },
+  {
+    "id": "q0013",
+    "question": "Long-lived memory cells can remember previous encounters with what?",
+    "context": "When B cells and T cells are activated and begin to replicate, some of their offspring become long-lived memory cells. Throughout the lifetime of an animal, these memory cells remember each specific pathogen encountered and can mount a strong response if the pathogen is detected again. This is \"adaptive\" because it occurs during the lifetime of an individual as an adaptation to infection with that pathogen and prepares the immune system for future challenges. Immunological memory can be in the form of either passive short-term memory or active long-term memory.",
+    "answers": {
+      "text": [
+        "specific pathogen",
+        "pathogen",
+        "each specific pathogen"
+      ],
+      "answer_start": [
+        190,
+        199,
+        185
+      ]
+    }
+  },
+  {
+    "id": "q0014",
+    "question": "When B cells and T cells begin to replicate, what do some of their offspring cells become?",
+    "context": "When B cells and T cells are activated and begin to replicate, some of their offspring become long-lived memory cells. Throughout the lifetime of an animal, these memory cells remember each specific pathogen encountered and can mount a strong response if the pathogen is detected again. This is \"adaptive\" because it occurs during the lifetime of an individual as an adaptation to infection with that pathogen and prepares the immune system for future challenges. Immunological memory can be in the form of either passive short-term memory or active long-term memory.",
+    "answers": {
+      "text": [
+        "long-lived memory cells",
+        "long-lived memory cells",
+        "long-lived memory cells"
+      ],
+      "answer_start": [
+        94,
+        94,
+        94
+      ]
+    }
+  }
+]
