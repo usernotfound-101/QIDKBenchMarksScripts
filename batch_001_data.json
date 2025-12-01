@@ -1,86 +1,86 @@
 [
   {
     "id": "q0001",
-    "question": "What year saw the merger of two museums in Newcastle?",
-    "context": "There are several museums and galleries in Newcastle, including the Centre for Life with its Science Village; the Discovery Museum a museum highlighting life on Tyneside, including Tyneside's shipbuilding heritage, and inventions which changed the world; the Great North Museum; in 2009 the Newcastle on Tyne Museum of Antiquities merged with the Great North Museum (Hancock Museum); Seven Stories a museum dedicated to children's books, the Side Gallery historical and contemporary photography from around the world and Northern England and the Newburn Hall Motor Museum.",
+    "question": "What did the museum acquire from the Royal College of Science?",
+    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
     "answers": {
       "text": [
-        "2009",
-        "2009",
-        "2009"
+        "Henry Cole wing",
+        "Henry Cole wing",
+        "Henry Cole wing"
       ],
       "answer_start": [
-        282,
-        282,
-        282
+        706,
+        706,
+        706
       ]
     }
   },
   {
     "id": "q0002",
-    "question": "What does the Discovery Museum draw attention to?",
-    "context": "There are several museums and galleries in Newcastle, including the Centre for Life with its Science Village; the Discovery Museum a museum highlighting life on Tyneside, including Tyneside's shipbuilding heritage, and inventions which changed the world; the Great North Museum; in 2009 the Newcastle on Tyne Museum of Antiquities merged with the Great North Museum (Hancock Museum); Seven Stories a museum dedicated to children's books, the Side Gallery historical and contemporary photography from around the world and Northern England and the Newburn Hall Motor Museum.",
+    "question": "What was constructed between 1978 and 1982 to link the Henry Cole wing to the rest of the museum?",
+    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
     "answers": {
       "text": [
-        "life on Tyneside",
-        "life on Tyneside",
-        "life on Tyneside,"
+        "a new entrance building",
+        "new entrance building",
+        "a new entrance building"
       ],
       "answer_start": [
-        153,
-        153,
-        153
+        931,
+        933,
+        931
       ]
     }
   },
   {
     "id": "q0003",
-    "question": "What museum in Newcastle is dedicated to children's books?",
-    "context": "There are several museums and galleries in Newcastle, including the Centre for Life with its Science Village; the Discovery Museum a museum highlighting life on Tyneside, including Tyneside's shipbuilding heritage, and inventions which changed the world; the Great North Museum; in 2009 the Newcastle on Tyne Museum of Antiquities merged with the Great North Museum (Hancock Museum); Seven Stories a museum dedicated to children's books, the Side Gallery historical and contemporary photography from around the world and Northern England and the Newburn Hall Motor Museum.",
+    "question": "What was intended for the site of the former boiler house?",
+    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
     "answers": {
       "text": [
-        "Seven Stories",
-        "Seven Stories",
-        "Seven Stories"
+        "the Spiral",
+        "the Spiral,",
+        "the Spiral"
       ],
       "answer_start": [
-        384,
-        384,
-        384
+        1032,
+        1032,
+        1032
       ]
     }
   },
   {
     "id": "q0004",
-    "question": "Where is the Science Village located?",
-    "context": "There are several museums and galleries in Newcastle, including the Centre for Life with its Science Village; the Discovery Museum a museum highlighting life on Tyneside, including Tyneside's shipbuilding heritage, and inventions which changed the world; the Great North Museum; in 2009 the Newcastle on Tyne Museum of Antiquities merged with the Great North Museum (Hancock Museum); Seven Stories a museum dedicated to children's books, the Side Gallery historical and contemporary photography from around the world and Northern England and the Newburn Hall Motor Museum.",
+    "question": "Who designed the iron gates that decorate the new entrance building?",
+    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
     "answers": {
       "text": [
-        "Centre for Life",
-        "the Centre for Life",
-        "Tyneside"
+        "Christopher Hay and Douglas Coyne",
+        "Christopher Hay and Douglas Coyne",
+        "Christopher Hay and Douglas Coyne"
       ],
       "answer_start": [
-        68,
-        64,
-        161
+        1164,
+        1164,
+        1164
       ]
     }
   },
   {
     "id": "q0005",
-    "question": "What type of heritage does Tyneside have?",
-    "context": "There are several museums and galleries in Newcastle, including the Centre for Life with its Science Village; the Discovery Museum a museum highlighting life on Tyneside, including Tyneside's shipbuilding heritage, and inventions which changed the world; the Great North Museum; in 2009 the Newcastle on Tyne Museum of Antiquities merged with the Great North Museum (Hancock Museum); Seven Stories a museum dedicated to children's books, the Side Gallery historical and contemporary photography from around the world and Northern England and the Newburn Hall Motor Museum.",
+    "question": "Which part of the museum received the first major post-war work?",
+    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
     "answers": {
       "text": [
-        "shipbuilding",
-        "shipbuilding",
-        "shipbuilding"
+        "Art Library",
+        "new storage space for books in the Art Library",
+        "new storage space for books in the Art Library"
       ],
       "answer_start": [
-        192,
-        192,
-        192
+        241,
+        206,
+        206
       ]
     }
   }

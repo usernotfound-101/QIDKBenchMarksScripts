@@ -105,7 +105,7 @@ def run_llama_batch_on_phone(remote_prompt_file, batch_idx):
                 }
             }
         },
-        "required": ["answers"]
+        "required": ["questions"]
     })
     
     # Simple redirection - stdout (model output) goes to file, stderr (logs) stays on terminal
@@ -134,13 +134,16 @@ def run_llama_batch_on_phone(remote_prompt_file, batch_idx):
         print(f"STDERR: {result.stderr}")
         raise subprocess.CalledProcessError(result.returncode, adb_cmd)
     
-    # Print the runtime logs that went to stderr
-    if result.stderr:
-        print(f"\nRuntime logs for batch {batch_idx+1}:")
-        print(result.stderr)
+    # Save the runtime logs (stderr) to a local file
+    log_file = f"runtime_batch_{batch_idx+1:03d}.log"
+    with open(log_file, "w", encoding="utf-8") as f:
+        f.write(result.stderr)
     
-    print(f"✓ Ran llama-cli for batch {batch_idx+1}, output saved to {remote_result_file}")
-    return remote_result_file
+    print(f"✓ Ran llama-cli for batch {batch_idx+1}")
+    print(f"  - Model output: {remote_result_file}")
+    print(f"  - Runtime logs: {log_file}")
+    
+    return remote_result_file, log_file
 
 def pull_batch_results(remote_result_file, batch_idx):
     # Pull just the model output (clean JSON)
@@ -198,6 +201,7 @@ def merge_batch_results(json_files):
 def main():
     batches = generate_batches()
     json_files = []
+    log_files = []
 
     for idx, batch_data in enumerate(batches):
         print(f"\n{'='*60}")
@@ -207,13 +211,14 @@ def main():
         # Push prompt to phone
         remote_prompt = push_batch_to_phone(batch_data, idx)
         
-        # Run llama-cli on phone (logs will print to console via stderr)
-        remote_result = run_llama_batch_on_phone(remote_prompt, idx)
+        # Run llama-cli on phone (captures logs to local file)
+        remote_result, log_file = run_llama_batch_on_phone(remote_prompt, idx)
         
         # Pull clean JSON output from phone
         local_json = pull_batch_results(remote_result, idx)
         
         json_files.append(local_json)
+        log_files.append(log_file)
 
     # Merge all JSON results
     merged_file = merge_batch_results(json_files)
@@ -233,9 +238,11 @@ def main():
                 print(f"\n{i+1}. ID: {answer['id']}")
                 print(f"   Answer: {answer['answer']}")
             print(f"\n{'='*60}")
-            print(f"Results saved to: {merged_file}")
+            print(f"📄 Results: {merged_file}")
+            print(f"📊 Runtime logs: {', '.join(log_files)}")
         else:
             print("\n⚠ Warning: No answers were generated!")
+            print("Check the log files for errors.")
     except Exception as e:
         print(f"\n⚠ Error reading merged results: {e}")
 

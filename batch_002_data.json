@@ -1,86 +1,86 @@
 [
   {
     "id": "q0006",
-    "question": "In 1990, what was the longest running primetime entertainment program in ABC's history?",
-    "context": "In 1990, Thomas S. Murphy delegated his position as president to Daniel B. Burke while remaining ABC's chairman and CEO. Capital Cities/ABC reported revenues of $465 million. Now at a strong second place, the network entered the 1990s with additional family-friendly hits including America's Funniest Home Videos (which has gone on to become the longest-running prime time entertainment program in the network's history), Step by Step, Hangin' with Mr. Cooper, Boy Meets World and Perfect Strangers spinoff Family Matters, as well as series such as Doogie Howser, M.D., Life Goes On, cult favorite Twin Peaks and The Commish. In September 1991, the network premiered Home Improvement, a sitcom starring stand-up comic Tim Allen centering on the family and work life of an accident-prone host of a cable-access home improvement show. Lasting nine seasons, its success led ABC to greenlight additional sitcom projects helmed by comedians during the 1990s including The Drew Carey Show; Brett Butler vehicle Grace Under Fire; and Ellen, which became notable for a 1997 episode which served as the coming out of series star Ellen DeGeneres (as well as her character in the series) as a lesbian.",
+    "question": "What class of ships is an example of large passenger liners?",
+    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
     "answers": {
       "text": [
-        "America's Funniest Home Videos",
-        "America's Funniest Home Videos",
-        "America's Funniest Home Videos"
+        "Olympic",
+        "Olympic",
+        "Olympic class"
       ],
       "answer_start": [
-        282,
-        282,
-        282
+        1178,
+        1178,
+        1178
       ]
     }
   },
   {
     "id": "q0007",
-    "question": "What comedy featuring stand up comedian Tim Allen debuted in 1991?",
-    "context": "In 1990, Thomas S. Murphy delegated his position as president to Daniel B. Burke while remaining ABC's chairman and CEO. Capital Cities/ABC reported revenues of $465 million. Now at a strong second place, the network entered the 1990s with additional family-friendly hits including America's Funniest Home Videos (which has gone on to become the longest-running prime time entertainment program in the network's history), Step by Step, Hangin' with Mr. Cooper, Boy Meets World and Perfect Strangers spinoff Family Matters, as well as series such as Doogie Howser, M.D., Life Goes On, cult favorite Twin Peaks and The Commish. In September 1991, the network premiered Home Improvement, a sitcom starring stand-up comic Tim Allen centering on the family and work life of an accident-prone host of a cable-access home improvement show. Lasting nine seasons, its success led ABC to greenlight additional sitcom projects helmed by comedians during the 1990s including The Drew Carey Show; Brett Butler vehicle Grace Under Fire; and Ellen, which became notable for a 1997 episode which served as the coming out of series star Ellen DeGeneres (as well as her character in the series) as a lesbian.",
+    "question": "How many expansion stages are used by the triple expansion engine?",
+    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
     "answers": {
       "text": [
-        "Home Improvement",
-        "Home Improvement",
-        "Home Improvement"
+        "three",
+        "three or four",
+        "three"
       ],
       "answer_start": [
-        667,
-        667,
-        667
+        204,
+        204,
+        204
       ]
     }
   },
   {
     "id": "q0008",
-    "question": "Who succeeded Thomas Murphy as president in 1990?",
-    "context": "In 1990, Thomas S. Murphy delegated his position as president to Daniel B. Burke while remaining ABC's chairman and CEO. Capital Cities/ABC reported revenues of $465 million. Now at a strong second place, the network entered the 1990s with additional family-friendly hits including America's Funniest Home Videos (which has gone on to become the longest-running prime time entertainment program in the network's history), Step by Step, Hangin' with Mr. Cooper, Boy Meets World and Perfect Strangers spinoff Family Matters, as well as series such as Doogie Howser, M.D., Life Goes On, cult favorite Twin Peaks and The Commish. In September 1991, the network premiered Home Improvement, a sitcom starring stand-up comic Tim Allen centering on the family and work life of an accident-prone host of a cable-access home improvement show. Lasting nine seasons, its success led ABC to greenlight additional sitcom projects helmed by comedians during the 1990s including The Drew Carey Show; Brett Butler vehicle Grace Under Fire; and Ellen, which became notable for a 1997 episode which served as the coming out of series star Ellen DeGeneres (as well as her character in the series) as a lesbian.",
+    "question": "What sort of engines utilized the Yarrow-Schlick-Tweedy balancing system?",
+    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
     "answers": {
       "text": [
-        "Daniel B. Burke",
-        "Daniel B. Burke",
-        "Daniel B. Burke"
+        "marine triple expansion",
+        "marine triple expansion",
+        "marine triple expansion engines"
       ],
       "answer_start": [
-        65,
-        65,
-        65
+        805,
+        805,
+        805
       ]
     }
   },
   {
     "id": "q0009",
-    "question": "What position at ABC did Thomas Murphy stay on for after stepping down as president?",
-    "context": "In 1990, Thomas S. Murphy delegated his position as president to Daniel B. Burke while remaining ABC's chairman and CEO. Capital Cities/ABC reported revenues of $465 million. Now at a strong second place, the network entered the 1990s with additional family-friendly hits including America's Funniest Home Videos (which has gone on to become the longest-running prime time entertainment program in the network's history), Step by Step, Hangin' with Mr. Cooper, Boy Meets World and Perfect Strangers spinoff Family Matters, as well as series such as Doogie Howser, M.D., Life Goes On, cult favorite Twin Peaks and The Commish. In September 1991, the network premiered Home Improvement, a sitcom starring stand-up comic Tim Allen centering on the family and work life of an accident-prone host of a cable-access home improvement show. Lasting nine seasons, its success led ABC to greenlight additional sitcom projects helmed by comedians during the 1990s including The Drew Carey Show; Brett Butler vehicle Grace Under Fire; and Ellen, which became notable for a 1997 episode which served as the coming out of series star Ellen DeGeneres (as well as her character in the series) as a lesbian.",
+    "question": "What are engines using four expansion stages known as?",
+    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
     "answers": {
       "text": [
-        "chairman and CEO",
-        "chairman and CEO",
-        "chairman"
+        "quadruple expansion engines",
+        "quadruple",
+        "quadruple expansion engines"
       ],
       "answer_start": [
-        103,
-        103,
-        103
+        263,
+        263,
+        263
       ]
     }
   },
   {
     "id": "q0010",
-    "question": "How much did Capital Cities/ABC report in revenues in 1990?",
-    "context": "In 1990, Thomas S. Murphy delegated his position as president to Daniel B. Burke while remaining ABC's chairman and CEO. Capital Cities/ABC reported revenues of $465 million. Now at a strong second place, the network entered the 1990s with additional family-friendly hits including America's Funniest Home Videos (which has gone on to become the longest-running prime time entertainment program in the network's history), Step by Step, Hangin' with Mr. Cooper, Boy Meets World and Perfect Strangers spinoff Family Matters, as well as series such as Doogie Howser, M.D., Life Goes On, cult favorite Twin Peaks and The Commish. In September 1991, the network premiered Home Improvement, a sitcom starring stand-up comic Tim Allen centering on the family and work life of an accident-prone host of a cable-access home improvement show. Lasting nine seasons, its success led ABC to greenlight additional sitcom projects helmed by comedians during the 1990s including The Drew Carey Show; Brett Butler vehicle Grace Under Fire; and Ellen, which became notable for a 1997 episode which served as the coming out of series star Ellen DeGeneres (as well as her character in the series) as a lesbian.",
+    "question": "In what century was the Yarrow-Schlick-Tweedy balancing system used?",
+    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
     "answers": {
       "text": [
-        "$465 million",
-        "$465 million",
-        "$465 million"
+        "19th",
+        "19th",
+        "19th"
       ],
       "answer_start": [
-        161,
-        161,
-        161
+        729,
+        729,
+        729
       ]
     }
   }
