@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """
-Process articles and highlights, generate summaries using SLM, and output JSON.
+-----------------------------------------------------------------------
+  QIDK AI SUSTAINABILITY BENCHMARK SUITE
+  Task: Text Summarization (Direct ADB Implementation)
+  
+  Fixes:
+  - Bypasses broken crun-cli.sh script
+  - Uses known working paths from generate_qna.py
+  - Saves prompt to file to avoid command-line length limits
+-----------------------------------------------------------------------
 """
 
 import re
@@ -8,197 +16,230 @@ import json
 import subprocess
 import sys
 import os
+import time
 
+# ---------------- CONFIGURATION ----------------
+# Directories
+PHONE_TMP_DIR = "/data/local/tmp"
+LOCAL_TEMP_DIR = "_temp_summary_workspace"  # Temp folder for prompt files
+
+# Paths on Device (MATCHING YOUR WORKING QnA SCRIPT)
+LLAMA_BIN_DIR = os.path.join(PHONE_TMP_DIR, "llama/build-clblast/bin")
+LLAMA_CLI_PATH = "./llama-cli"
+
+# Available Models
+AVAILABLE_MODELS = {
+    "1": {"name": "Llama 3.2 (3B)", "file": "Llama-3.2-3B-Instruct-Q5_K_S.gguf"}, 
+    "2": {"name": "Phi 3.5 Mini",   "file": "phi-3.5-mini-instruct.Q4_K_M.gguf"},
+    "3": {"name": "Gemma 2 (4B)",   "file": "gemma-3-4b-it-q4_0.gguf"},
+    "4": {"name": "Qwen 2.5 (4B)",  "file": "qwen3-4b-instruct-2507-q4km.gguf"}
+}
+# -----------------------------------------------
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def print_banner():
+    clear_screen()
+    print("\n" + "="*60)
+    print("  QIDK EDGE AI BENCHMARKING TOOL  ".center(60))
+    print("  Task: Article Summarization  ".center(60))
+    print("="*60 + "\n")
+
+def get_user_config():
+    print_banner()
+    
+    # 1. File Inputs
+    print(" [1] FILE CONFIGURATION")
+    
+    # Articles File
+    while True:
+        f_input = input("  > Enter articles filename (Default 'articles.txt'): ").strip()
+        articles_file = f_input if f_input else "articles.txt"
+        if os.path.exists(articles_file):
+            print(f"    [✓] Found: {articles_file}")
+            break
+        print(f"    [!] File '{articles_file}' not found.")
+
+    # Highlights File
+    while True:
+        h_input = input("  > Enter highlights filename (Default 'highlights.txt'): ").strip()
+        highlights_file = h_input if h_input else "highlights.txt"
+        if os.path.exists(highlights_file):
+            print(f"    [✓] Found: {highlights_file}")
+            break
+        print(f"    [!] File '{highlights_file}' not found.")
+
+    # Output File
+    out_input = input("  > Enter output JSON name (Default 'summaries_output.json'): ").strip()
+    output_json = out_input if out_input else "summaries_output.json"
+
+    # 2. Model Selection
+    print("\n [2] SELECT TARGET MODEL")
+    for key, info in AVAILABLE_MODELS.items():
+        print(f"  [{key}] {info['name']}")
+    
+    selected_model_file = ""
+    while True:
+        choice = input("\n  > Select model (Default 1): ").strip()
+        if not choice: choice = "1"
+        if choice in AVAILABLE_MODELS:
+            selected_model_file = AVAILABLE_MODELS[choice]["file"]
+            break
+        print("    [!] Invalid selection.")
+
+    input("\n  Press Enter to start processing...")
+    return articles_file, highlights_file, output_json, selected_model_file
 
 def read_file_sections(filepath, delimiter_pattern):
-    r"""
-    Read a file and split it into sections based on delimiter pattern.
-    
-    Args:
-        filepath: Path to the input file
-        delimiter_pattern: Regex pattern for section delimiters (e.g., r'={3,}\s*ARTICLE\s+(\d+)\s*={3,}')
-    
-    Returns:
-        List of tuples: [(section_number, section_content), ...]
-    """
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
     except FileNotFoundError:
-        print(f"Error: File '{filepath}' not found.")
         return []
     
-    # Split by section headers
     sections = re.split(delimiter_pattern + r'\s*\n', content)
+    if sections[0].strip() == '': sections = sections[1:]
     
-    # Remove empty first element if file starts with delimiter
-    if sections[0].strip() == '':
-        sections = sections[1:]
-    
-    # Process sections in pairs (number, content)
     result = []
     for i in range(0, len(sections), 2):
         if i + 1 < len(sections):
-            section_num = sections[i]
-            section_content = sections[i + 1].strip()
-            if section_content:
-                result.append((section_num, section_content))
-    
+            result.append((sections[i], sections[i + 1].strip()))
     return result
 
+def push_prompt_to_phone(article_text, idx):
+    """Saves the prompt to a file and pushes it to the phone"""
+    # Create the prompt text
+    prompt_text = (
+        f"{{task begin}}Summarize this article briefly in 3-5 sentences, "
+        f"like 'X did this, Y did that', and wrap your summary with "
+        f"[summary begin] and [summary end] tags{{task end}}:\n\n{article_text}"
+    )
+    
+    # Save locally
+    local_file = os.path.join(LOCAL_TEMP_DIR, f"prompt_{idx}.txt")
+    with open(local_file, "w", encoding="utf-8") as f:
+        f.write(prompt_text)
+    
+    # Push to phone
+    remote_file = os.path.join(PHONE_TMP_DIR, f"summary_prompt_{idx}.txt")
+    subprocess.run(["adb", "push", local_file, remote_file], 
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+    return remote_file
 
-def generate_summary_with_slm(article_text):
-    """
-    Generate summary using the SLM via crun-cli.sh
-    Uses M and D environment variables
+def run_inference_on_phone(remote_prompt_file, model_file):
+    model_path = os.path.join(PHONE_TMP_DIR, "gguf", model_file)
     
-    Args:
-        article_text: The article text to summarize
+    # Run the command directly (Standard Llama-CLI arguments)
+    # -n 400: Limit output to 400 tokens
+    # --no-cnv: No conversation prompt formatting (raw completion)
+    adb_cmd = (
+        f"cd {LLAMA_BIN_DIR} && "
+        f"export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH && "
+        f"{LLAMA_CLI_PATH} "
+        f"-m {model_path} "
+        f"-c 8192 " 
+        f"-n 400 "
+        f"-t 4 "
+        f"-no-cnv "
+        f"--file {remote_prompt_file}"
+    )
     
-    Returns:
-        Tuple of (summary_text, logs, raw_output)
-    """
-    # Escape single quotes in the article text for shell
-    escaped_text = article_text.replace("'", "'\\''")
+    result = subprocess.run(["adb", "shell", adb_cmd], capture_output=True, text=True)
     
-    # Create the prompt with task tags and requesting tagged output
-    prompt = f'"{{task begin}}Summarize this article briefly in 3-5 sentences, like \"X did this, Y did that\", and wrap your summary with [summary begin] and [summary end] tags{{task end}}: {escaped_text}"'
-    
-    # Build the command with token limit to force shorter responses
-    # -n 400 limits output to ~300 words, giving model room to generate actual summary
-    cmd = f"./crun-cli.sh -no-cnv -n 400 -p '{prompt}'"
-    
-    try:
-        # Run the command and capture output - NO TIMEOUT
-        result = subprocess.run(
-            cmd,
-            shell=True,
-            capture_output=True,
-            text=True,
-            env=os.environ.copy()  # Pass environment variables including M and D
-        )
+    if result.returncode != 0:
+        return None, result.stderr
         
-        if result.returncode == 0:
-            raw_output = result.stdout
-            logs = result.stderr.strip()  # Capture stderr logs
-            
-            # Clean the output similar to generate_qna.py
-            content = raw_output
-            
-            # 1. Remove all newlines
-            content = content.replace('\n', '')
-            
-            # 2. Remove '> ' prompts
-            content = content.replace('> ', '')
-            
-            # 3. Remove 'EOF by user'
-            content = re.sub(r'EOF by user.*', '', content, flags=re.IGNORECASE)
-            
-            # 4. Remove {task begin} ... {task end} blocks (the instruction/prompt)
-            content = re.sub(r'\{task begin\}.*?\{task end\}', '', content, flags=re.IGNORECASE)
-            
-            # 5. Add newline around [ ] for easier parsing
-            content = content.replace('[', '\n[').replace(']', ']\n')
-            
-            # 5. Collapse multiple spaces
-            content = re.sub(r'\s+', ' ', content)
-            
-            # 6. Extract [summary begin] ... [summary end] block
-            # Use case-insensitive search and handle variations
-            match = re.search(r'\[summary begin\](.*?)\[/?summary end\]', content, flags=re.IGNORECASE | re.DOTALL)
-            
-            if match:
-                summary = match.group(1).strip()
-                return summary, logs, raw_output
-            else:
-                # Fallback: if tags not found, return cleaned content
-                print(f"  Warning: Summary tags not found in output, using cleaned response")
-                # Remove the prompt if it's echoed back
-                if "Summarize this article briefly" in content:
-                    parts = content.split("Summarize this article briefly", 1)
-                    if len(parts) > 1:
-                        content = parts[1].strip()
-                return content.strip(), logs, raw_output
-        else:
-            error_msg = f"Error running SLM: {result.stderr}"
-            print(error_msg)
-            return "Error generating summary", result.stderr, result.stdout
-    
-    except Exception as e:
-        error_msg = f"Error running SLM: {e}"
-        print(error_msg)
-        return "Error generating summary", str(e), ""
+    return result.stdout, result.stderr
 
+def parse_summary_output(raw_output):
+    """Extracts summary from the raw model output"""
+    content = raw_output.replace('\n', ' ').replace('> ', '')
+    
+    # Try to find the tags
+    match = re.search(r'\[summary begin\](.*?)\[/?summary end\]', content, flags=re.IGNORECASE | re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    
+    # Fallback: Just try to get the text after the prompt (if echoed)
+    if "tags{task end}:" in content:
+        parts = content.split("tags{task end}:")
+        if len(parts) > 1:
+            return parts[-1].strip()[:1000] # Safe limit
+            
+    return content[-500:].strip() # Return last chunk if all else fails
 
 def main():
-    # Configuration
-    if len(sys.argv) < 3:
-        print("Usage: python article_summarizer.py <articles_file> <highlights_file> [output_json]")
-        print("Example: M=gemma-3-4b-it-q4_0.gguf D=HTP0 python article_summarizer.py articles.txt highlights.txt")
-        print("\nNote: Set M and D environment variables before running")
-        sys.exit(1)
+    if not os.path.exists(LOCAL_TEMP_DIR):
+        os.makedirs(LOCAL_TEMP_DIR)
+
+    articles_file, highlights_file, output_json, model_file = get_user_config()
     
-    articles_file = sys.argv[1]
-    highlights_file = sys.argv[2]
-    output_json = sys.argv[3] if len(sys.argv) > 3 else 'summaries_output.json'
-    
-    # Check if M environment variable is set
-    if 'M' not in os.environ:
-        print("Error: M environment variable not set. Please set it to your model path.")
-        print("Example: export M=gemma-3-4b-it-q4_0.gguf")
-        sys.exit(1)
-    
-    if 'D' not in os.environ:
-        print("Error: D environment variable not set. Please set it to your device.")
-        print("Example: export D=HTP0")
-        sys.exit(1)
-    
-    print(f"Using model: {os.environ['M']}")
-    print(f"Using device: {os.environ['D']}")
-    print()
-    
-    # Read articles and highlights
-    print("Reading articles...")
+    print("\n  [•] Reading input files...")
     articles = read_file_sections(articles_file, r'={3,}\s*ARTICLE\s+(\d+)\s*={3,}')
-    
-    print("Reading highlights...")
     highlights = read_file_sections(highlights_file, r'={3,}\s*SUMMARY\s+(\d+)\s*={3,}')
-    
-    # Create a dictionary for highlights for easy lookup
     highlights_dict = {num: content for num, content in highlights}
     
-    # Process each article
+    print(f"  [✓] Loaded {len(articles)} articles.")
+    print("\n  [•] Starting Summarization...\n")
+    
     results = []
-    for article_num, article_content in articles:
-        print(f"\nProcessing Article {article_num}...")
+    
+    for idx, (article_num, article_content) in enumerate(articles):
+        print(f"  Processing Article {article_num} ({idx+1}/{len(articles)})...", end="", flush=True)
         
-        # Generate summary using SLM
-        print(f"  Generating summary with SLM...")
-        summary, logs, raw_output = generate_summary_with_slm(article_content)
+        start_time = time.time()
         
-        # Get corresponding highlight
-        highlight = highlights_dict.get(article_num, "No highlight available")
-        
-        # Create result object with logs and raw output
-        result = {
+        try:
+            # 1. Push Prompt File
+            remote_prompt = push_prompt_to_phone(article_content, article_num)
+            
+            # 2. Run Inference
+            raw_out, logs = run_inference_on_phone(remote_prompt, model_file)
+            
+            duration = time.time() - start_time
+            
+            if raw_out:
+                summary = parse_summary_output(raw_out)
+                print(f" Done ({duration:.2f}s)")
+            else:
+                summary = "Error: Inference Failed"
+                print(" Failed.")
+                
+            # Cleanup phone file
+            subprocess.run(["adb", "shell", f"rm {remote_prompt}"], 
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        except Exception as e:
+            print(f" Error: {e}")
+            summary = f"Error: {e}"
+            logs = str(e)
+            raw_out = ""
+
+        # Save Result
+        results.append({
             "article_number": article_num,
-            "highlight": highlight,
+            "highlight": highlights_dict.get(article_num, ""),
             "generated_summary": summary,
             "article_text": article_content,
             "generation_logs": logs,
-            "raw_model_output": raw_output
-        }
-        
-        results.append(result)
-        print(f"  ✓ Article {article_num} processed")
+            "raw_model_output": raw_out
+        })
     
-    # Save to JSON
+    # Save JSON
     with open(output_json, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     
-    print(f"\n✓ All done! Results saved to: {output_json}")
-    print(f"  Total articles processed: {len(results)}")
+    # Cleanup Local
+    try:
+        import shutil
+        shutil.rmtree(LOCAL_TEMP_DIR)
+    except: pass
 
+    print("\n" + "="*60)
+    print("  TASK COMPLETE")
+    print(f"  • Output: {output_json}")
+    print("="*60 + "\n")
 
 if __name__ == '__main__':
     main()
