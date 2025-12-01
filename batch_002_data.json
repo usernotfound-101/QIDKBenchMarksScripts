@@ -1,86 +1,86 @@
 [
   {
     "id": "q0006",
-    "question": "What class of ships is an example of large passenger liners?",
-    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
+    "question": "What surrounds the church of St. Andrew?",
+    "context": "The Parish Church of St Andrew is traditionally recognised as 'the oldest church in this town'. The present building was begun in the 12th Century and the last addition to it, apart from the vestries, was the main porch in 1726. It is quite possible that there was an earlier church here dating from Saxon times. This older church would have been one of several churches along the River Tyne dedicated to St Andrew, including the Priory church at Hexham. The building contains more old stonework than any other church in Newcastle. It is surrounded by the last of the ancient churchyards to retain its original character. Many key names associated with Newcastle's history worshipped and were buried here. The church tower received a battering during the Siege of Newcastle by the Scots who finally breached the Town Wall and forced surrender. Three of the cannonballs remain on site as testament to the siege.",
     "answers": {
       "text": [
-        "Olympic",
-        "Olympic",
-        "Olympic class"
+        "ancient churchyards",
+        "ancient churchyards",
+        "ancient churchyards"
       ],
       "answer_start": [
-        1178,
-        1178,
-        1178
+        568,
+        568,
+        568
       ]
     }
   },
   {
     "id": "q0007",
-    "question": "How many expansion stages are used by the triple expansion engine?",
-    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
+    "question": "What was added to the the church of St. Andrew in 1726?",
+    "context": "The Parish Church of St Andrew is traditionally recognised as 'the oldest church in this town'. The present building was begun in the 12th Century and the last addition to it, apart from the vestries, was the main porch in 1726. It is quite possible that there was an earlier church here dating from Saxon times. This older church would have been one of several churches along the River Tyne dedicated to St Andrew, including the Priory church at Hexham. The building contains more old stonework than any other church in Newcastle. It is surrounded by the last of the ancient churchyards to retain its original character. Many key names associated with Newcastle's history worshipped and were buried here. The church tower received a battering during the Siege of Newcastle by the Scots who finally breached the Town Wall and forced surrender. Three of the cannonballs remain on site as testament to the siege.",
     "answers": {
       "text": [
-        "three",
-        "three or four",
-        "three"
+        "the main porch",
+        "the main porch",
+        "the main porch"
       ],
       "answer_start": [
-        204,
-        204,
-        204
+        205,
+        205,
+        205
       ]
     }
   },
   {
     "id": "q0008",
-    "question": "What sort of engines utilized the Yarrow-Schlick-Tweedy balancing system?",
-    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
+    "question": "What year was the latest addition to the Church of St. Andrew?",
+    "context": "The Parish Church of St Andrew is traditionally recognised as 'the oldest church in this town'. The present building was begun in the 12th Century and the last addition to it, apart from the vestries, was the main porch in 1726. It is quite possible that there was an earlier church here dating from Saxon times. This older church would have been one of several churches along the River Tyne dedicated to St Andrew, including the Priory church at Hexham. The building contains more old stonework than any other church in Newcastle. It is surrounded by the last of the ancient churchyards to retain its original character. Many key names associated with Newcastle's history worshipped and were buried here. The church tower received a battering during the Siege of Newcastle by the Scots who finally breached the Town Wall and forced surrender. Three of the cannonballs remain on site as testament to the siege.",
     "answers": {
       "text": [
-        "marine triple expansion",
-        "marine triple expansion",
-        "marine triple expansion engines"
+        "1726",
+        "1726",
+        "1726"
       ],
       "answer_start": [
-        805,
-        805,
-        805
+        223,
+        223,
+        223
       ]
     }
   },
   {
     "id": "q0009",
-    "question": "What are engines using four expansion stages known as?",
-    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
+    "question": "What received a battering during the Siege of Newcastle?",
+    "context": "The Parish Church of St Andrew is traditionally recognised as 'the oldest church in this town'. The present building was begun in the 12th Century and the last addition to it, apart from the vestries, was the main porch in 1726. It is quite possible that there was an earlier church here dating from Saxon times. This older church would have been one of several churches along the River Tyne dedicated to St Andrew, including the Priory church at Hexham. The building contains more old stonework than any other church in Newcastle. It is surrounded by the last of the ancient churchyards to retain its original character. Many key names associated with Newcastle's history worshipped and were buried here. The church tower received a battering during the Siege of Newcastle by the Scots who finally breached the Town Wall and forced surrender. Three of the cannonballs remain on site as testament to the siege.",
     "answers": {
       "text": [
-        "quadruple expansion engines",
-        "quadruple",
-        "quadruple expansion engines"
+        "The church tower",
+        "The church tower",
+        "The church tower"
       ],
       "answer_start": [
-        263,
-        263,
-        263
+        706,
+        706,
+        706
       ]
     }
   },
   {
     "id": "q0010",
-    "question": "In what century was the Yarrow-Schlick-Tweedy balancing system used?",
-    "context": "It is a logical extension of the compound engine (described above) to split the expansion into yet more stages to increase efficiency. The result is the multiple expansion engine. Such engines use either three or four expansion stages and are known as triple and quadruple expansion engines respectively. These engines use a series of cylinders of progressively increasing diameter. These cylinders are designed to divide the work into equal shares for each expansion stage. As with the double expansion engine, if space is at a premium, then two smaller cylinders may be used for the low-pressure stage. Multiple expansion engines typically had the cylinders arranged inline, but various other formations were used. In the late 19th century, the Yarrow-Schlick-Tweedy balancing 'system' was used on some marine triple expansion engines. Y-S-T engines divided the low-pressure expansion stages between two cylinders, one at each end of the engine. This allowed the crankshaft to be better balanced, resulting in a smoother, faster-responding engine which ran with less vibration. This made the 4-cylinder triple-expansion engine popular with large passenger liners (such as the Olympic class), but this was ultimately replaced by the virtually vibration-free turbine engine.[citation needed]",
+    "question": "Which parish church in Newcastle is typically agreed to be the oldest one in town?",
+    "context": "The Parish Church of St Andrew is traditionally recognised as 'the oldest church in this town'. The present building was begun in the 12th Century and the last addition to it, apart from the vestries, was the main porch in 1726. It is quite possible that there was an earlier church here dating from Saxon times. This older church would have been one of several churches along the River Tyne dedicated to St Andrew, including the Priory church at Hexham. The building contains more old stonework than any other church in Newcastle. It is surrounded by the last of the ancient churchyards to retain its original character. Many key names associated with Newcastle's history worshipped and were buried here. The church tower received a battering during the Siege of Newcastle by the Scots who finally breached the Town Wall and forced surrender. Three of the cannonballs remain on site as testament to the siege.",
     "answers": {
       "text": [
-        "19th",
-        "19th",
-        "19th"
+        "The Parish Church of St Andrew",
+        "The Parish Church of St Andrew",
+        "The Parish Church of St Andrew is"
       ],
       "answer_start": [
-        729,
-        729,
-        729
+        0,
+        0,
+        0
       ]
     }
   }

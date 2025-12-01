@@ -133,7 +133,7 @@ main: llama threadpool init, n_threads = 4
 
 system_info: n_threads = 4 (n_threads_batch = 4) / 8 | CPU : NEON = 1 | ARM_FMA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | REPACK = 1 | 
 
-sampler seed: 2282445001
+sampler seed: 1093344165
 sampler params: 
 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 8192
@@ -142,14 +142,14 @@ sampler params:
 sampler chain: logits -> logit-bias -> penalties -> dry -> top-n-sigma -> top-k -> typical -> top-p -> min-p -> xtc -> temp-ext -> dist 
 generate: n_ctx = 8192, n_batch = 2048, n_predict = 2048, n_keep = 0
 
-common_perf_print:    sampling time =      46.68 ms
-common_perf_print:    samplers time =       6.74 ms /  1402 tokens
-common_perf_print:        load time =     678.77 ms
-common_perf_print: prompt eval time =   65918.25 ms /  1230 tokens (   53.59 ms per token,    18.66 tokens per second)
-common_perf_print:        eval time =   18819.11 ms /   171 runs   (  110.05 ms per token,     9.09 tokens per second)
-common_perf_print:       total time =   84794.27 ms /  1401 tokens
-common_perf_print: unaccounted time =      10.22 ms /   0.0 %      (total - sampling - prompt eval - eval) / (total)
-common_perf_print:    graphs reused =        169
+common_perf_print:    sampling time =      46.65 ms
+common_perf_print:    samplers time =       2.59 ms /   498 tokens
+common_perf_print:        load time =    1015.42 ms
+common_perf_print: prompt eval time =   16400.67 ms /   422 tokens (   38.86 ms per token,    25.73 tokens per second)
+common_perf_print:        eval time =    5724.56 ms /    75 runs   (   76.33 ms per token,    13.10 tokens per second)
+common_perf_print:       total time =   22176.42 ms /   497 tokens
+common_perf_print: unaccounted time =       4.53 ms /   0.0 %      (total - sampling - prompt eval - eval) / (total)
+common_perf_print:    graphs reused =         74
 llama_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
 llama_memory_breakdown_print: |   - Host               |                 5395 =  2254 +    3072 +      68                |
 llama_memory_breakdown_print: |   - CPU_REPACK         |                 1242 =  1242 +       0 +       0                |

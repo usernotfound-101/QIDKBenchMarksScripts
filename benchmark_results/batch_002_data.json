@@ -1,0 +1,44 @@
+[
+  {
+    "id": "q0003",
+    "question": "Vice President Agnew describes Civil disobedience in what activities?",
+    "context": "It has been argued that the term \"civil disobedience\" has always suffered from ambiguity and in modern times, become utterly debased. Marshall Cohen notes, \"It has been used to describe everything from bringing a test-case in the federal courts to taking aim at a federal official. Indeed, for Vice President Agnew it has become a code-word describing the activities of muggers, arsonists, draft evaders, campaign hecklers, campus militants, anti-war demonstrators, juvenile delinquents and political assassins.\"",
+    "answers": {
+      "text": [
+        "muggers, arsonists, draft evaders, campaign hecklers, campus militants, anti-war demonstrators, juvenile delinquents and political assassins",
+        "civil disobedience",
+        "muggers, arsonists, draft evaders, campaign hecklers, campus militants, anti-war demonstrators, juvenile delinquents and political assassins",
+        "muggers, arsonists, draft evaders, campaign hecklers, campus militants, anti-war demonstrators, juvenile delinquents and political assassins",
+        "activities of muggers, arsonists, draft evaders, campaign hecklers, campus militants, anti-war demonstrators, juvenile delinquents and political assassins"
+      ],
+      "answer_start": [
+        370,
+        34,
+        370,
+        370,
+        356
+      ]
+    }
+  },
+  {
+    "id": "q0004",
+    "question": "What person argues that civil disobedience is used to describe everything?",
+    "context": "It has been argued that the term \"civil disobedience\" has always suffered from ambiguity and in modern times, become utterly debased. Marshall Cohen notes, \"It has been used to describe everything from bringing a test-case in the federal courts to taking aim at a federal official. Indeed, for Vice President Agnew it has become a code-word describing the activities of muggers, arsonists, draft evaders, campaign hecklers, campus militants, anti-war demonstrators, juvenile delinquents and political assassins.\"",
+    "answers": {
+      "text": [
+        "Marshall Cohen",
+        "Marshall Cohen",
+        "Marshall Cohen",
+        "Marshall Cohen",
+        "Marshall Cohen"
+      ],
+      "answer_start": [
+        134,
+        134,
+        134,
+        134,
+        134
+      ]
+    }
+  }
+]

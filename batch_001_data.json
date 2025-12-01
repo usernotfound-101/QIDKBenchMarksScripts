@@ -1,86 +1,86 @@
 [
   {
     "id": "q0001",
-    "question": "What did the museum acquire from the Royal College of Science?",
-    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
+    "question": "When did Luther broaden his attacks to include core Church doctrines?",
+    "context": "In the summer of 1521, Luther widened his target from individual pieties like indulgences and pilgrimages to doctrines at the heart of Church practices. In On the Abrogation of the Private Mass, he condemned as idolatry the idea that the mass is a sacrifice, asserting instead that it is a gift, to be received with thanksgiving by the whole congregation. His essay On Confession, Whether the Pope has the Power to Require It rejected compulsory confession and encouraged private confession and absolution, since \"every Christian is a confessor.\" In November, Luther wrote The Judgement of Martin Luther on Monastic Vows. He assured monks and nuns that they could break their vows without sin, because vows were an illegitimate and vain attempt to win salvation.",
     "answers": {
       "text": [
-        "Henry Cole wing",
-        "Henry Cole wing",
-        "Henry Cole wing"
+        "summer of 1521",
+        "summer of 1521",
+        "1521"
       ],
       "answer_start": [
-        706,
-        706,
-        706
+        7,
+        7,
+        17
       ]
     }
   },
   {
     "id": "q0002",
-    "question": "What was constructed between 1978 and 1982 to link the Henry Cole wing to the rest of the museum?",
-    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
+    "question": "How did Luther describe the mass that was viewed as sacrifice?",
+    "context": "In the summer of 1521, Luther widened his target from individual pieties like indulgences and pilgrimages to doctrines at the heart of Church practices. In On the Abrogation of the Private Mass, he condemned as idolatry the idea that the mass is a sacrifice, asserting instead that it is a gift, to be received with thanksgiving by the whole congregation. His essay On Confession, Whether the Pope has the Power to Require It rejected compulsory confession and encouraged private confession and absolution, since \"every Christian is a confessor.\" In November, Luther wrote The Judgement of Martin Luther on Monastic Vows. He assured monks and nuns that they could break their vows without sin, because vows were an illegitimate and vain attempt to win salvation.",
     "answers": {
       "text": [
-        "a new entrance building",
-        "new entrance building",
-        "a new entrance building"
+        "condemned as idolatry",
+        "idolatry",
+        "gift"
       ],
       "answer_start": [
-        931,
-        933,
-        931
+        198,
+        211,
+        290
       ]
     }
   },
   {
     "id": "q0003",
-    "question": "What was intended for the site of the former boiler house?",
-    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
+    "question": "What did Luther call the mass instead of sacrifice?",
+    "context": "In the summer of 1521, Luther widened his target from individual pieties like indulgences and pilgrimages to doctrines at the heart of Church practices. In On the Abrogation of the Private Mass, he condemned as idolatry the idea that the mass is a sacrifice, asserting instead that it is a gift, to be received with thanksgiving by the whole congregation. His essay On Confession, Whether the Pope has the Power to Require It rejected compulsory confession and encouraged private confession and absolution, since \"every Christian is a confessor.\" In November, Luther wrote The Judgement of Martin Luther on Monastic Vows. He assured monks and nuns that they could break their vows without sin, because vows were an illegitimate and vain attempt to win salvation.",
     "answers": {
       "text": [
-        "the Spiral",
-        "the Spiral,",
-        "the Spiral"
+        "a gift",
+        "gift",
+        "gift"
       ],
       "answer_start": [
-        1032,
-        1032,
-        1032
+        288,
+        290,
+        290
       ]
     }
   },
   {
     "id": "q0004",
-    "question": "Who designed the iron gates that decorate the new entrance building?",
-    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
+    "question": "What did Luther tell monks and nuns about their vows?",
+    "context": "In the summer of 1521, Luther widened his target from individual pieties like indulgences and pilgrimages to doctrines at the heart of Church practices. In On the Abrogation of the Private Mass, he condemned as idolatry the idea that the mass is a sacrifice, asserting instead that it is a gift, to be received with thanksgiving by the whole congregation. His essay On Confession, Whether the Pope has the Power to Require It rejected compulsory confession and encouraged private confession and absolution, since \"every Christian is a confessor.\" In November, Luther wrote The Judgement of Martin Luther on Monastic Vows. He assured monks and nuns that they could break their vows without sin, because vows were an illegitimate and vain attempt to win salvation.",
     "answers": {
       "text": [
-        "Christopher Hay and Douglas Coyne",
-        "Christopher Hay and Douglas Coyne",
-        "Christopher Hay and Douglas Coyne"
+        "break their vows",
+        "illegitimate",
+        "break their vows without sin,"
       ],
       "answer_start": [
-        1164,
-        1164,
-        1164
+        664,
+        715,
+        664
       ]
     }
   },
   {
     "id": "q0005",
-    "question": "Which part of the museum received the first major post-war work?",
-    "context": "In the immediate post-war years there was little money available for other than essential repairs. The 1950s and early 1960s saw little in the way of building work; the first major work was the creation of new storage space for books in the Art Library in 1966 and 1967. This involved flooring over Aston Webb's main hall to form the book stacks, with a new medieval gallery on the ground floor (now the shop, opened in 2006). Then the lower ground-floor galleries in the south-west part of the museum were redesigned, opening in 1978 to form the new galleries covering Continental art 1600–1800 (late Renaissance, Baroque through Rococo and neo-Classical). In 1974 the museum had acquired what is now the Henry Cole wing from the Royal College of Science. In order to adapt the building as galleries, all the Victorian interiors except for the staircase were recast during the remodelling. To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982. This building is of concrete and very functional, the only embellishment being the iron gates by Christopher Hay and Douglas Coyne of the Royal College of Art. These are set in the columned screen wall designed by Aston Webb that forms the façade.",
+    "question": "After rejecting compulsory confession, what did Luther call for?",
+    "context": "In the summer of 1521, Luther widened his target from individual pieties like indulgences and pilgrimages to doctrines at the heart of Church practices. In On the Abrogation of the Private Mass, he condemned as idolatry the idea that the mass is a sacrifice, asserting instead that it is a gift, to be received with thanksgiving by the whole congregation. His essay On Confession, Whether the Pope has the Power to Require It rejected compulsory confession and encouraged private confession and absolution, since \"every Christian is a confessor.\" In November, Luther wrote The Judgement of Martin Luther on Monastic Vows. He assured monks and nuns that they could break their vows without sin, because vows were an illegitimate and vain attempt to win salvation.",
     "answers": {
       "text": [
-        "Art Library",
-        "new storage space for books in the Art Library",
-        "new storage space for books in the Art Library"
+        "private confession and absolution",
+        "private confession and absolution",
+        "private confession"
       ],
       "answer_start": [
-        241,
-        206,
-        206
+        472,
+        472,
+        472
       ]
     }
   }
