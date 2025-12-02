@@ -109,11 +109,11 @@ def read_file_sections(filepath, delimiter_pattern):
 
 def push_prompt_to_phone(article_text, idx):
     """Saves the prompt to a file and pushes it to the phone"""
-    # Create the prompt text
+    # Create the prompt text - force JSON-only output to match schema
     prompt_text = (
-        f"{{task begin}}Summarize this article briefly in 3-5 sentences, "
-        f"like 'X did this, Y did that', and wrap your summary with "
-        f"[summary begin] and [summary end] tags{{task end}}:\n\n{article_text}"
+        "Summarize this article briefly in 3-5 sentences.\n"
+        "Do not include any extra text, commentary, or explanation.\n\n"
+        f"{article_text}\n"
     )
     
     # Save locally
@@ -127,47 +127,131 @@ def push_prompt_to_phone(article_text, idx):
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
     return remote_file
 
-def run_inference_on_phone(remote_prompt_file, model_file):
+def run_inference_on_phone(remote_prompt_file, model_file, idx):
     model_path = os.path.join(PHONE_TMP_DIR, "gguf", model_file)
+    remote_result_file = os.path.join(PHONE_TMP_DIR, f"summary_result_{idx}.json")
     
-    # Run the command directly (Standard Llama-CLI arguments)
-    # -n 400: Limit output to 400 tokens
-    # --no-cnv: No conversation prompt formatting (raw completion)
+    # JSON schema requesting a single summary string
+    json_schema = json.dumps({
+        "type": "object",
+        "properties": {
+            "summary": {"type": "string"}
+        },
+        "required": ["summary"]
+    })
+    
     adb_cmd = (
         f"cd {LLAMA_BIN_DIR} && "
         f"export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH && "
         f"{LLAMA_CLI_PATH} "
         f"-m {model_path} "
-        f"-c 8192 " 
+        f"-c 8192 "
         f"-n 400 "
         f"-t 4 "
         f"-no-cnv "
-        f"--file {remote_prompt_file}"
+        f"--json-schema '{json_schema}' "
+        f"--file {remote_prompt_file} "
+        f"> {remote_result_file}"
     )
     
     result = subprocess.run(["adb", "shell", adb_cmd], capture_output=True, text=True)
-    
+    stderr_logs = result.stderr or ""
     if result.returncode != 0:
-        return None, result.stderr
-        
-    return result.stdout, result.stderr
+        # Return stderr for diagnostics
+        return None, stderr_logs
+
+    # Pull result file to local temp dir
+    local_result_file = os.path.join(LOCAL_TEMP_DIR, f"summary_result_{idx}.json")
+    try:
+        subprocess.run(["adb", "pull", remote_result_file, local_result_file],
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+    except subprocess.CalledProcessError as e:
+        return None, f"Failed to pull result: {e}\n{stderr_logs}"
+
+    # Read raw content and attempt robust parsing
+    try:
+        with open(local_result_file, "r", encoding="utf-8") as f:
+            raw = f.read()
+    except Exception as e:
+        return None, f"Failed to read pulled result: {e}\n{stderr_logs}"
+
+    # Try to parse using robust extractor
+    parsed_summary = parse_summary_output(raw)
+    if parsed_summary is None:
+        return None, f"Failed to parse JSON result. Raw output saved. stderr: {stderr_logs}\nRAW:{raw}"
+    return parsed_summary.strip(), stderr_logs
 
 def parse_summary_output(raw_output):
-    """Extracts summary from the raw model output"""
-    content = raw_output.replace('\n', ' ').replace('> ', '')
-    
-    # Try to find the tags
-    match = re.search(r'\[summary begin\](.*?)\[/?summary end\]', content, flags=re.IGNORECASE | re.DOTALL)
-    if match:
-        return match.group(1).strip()
-    
-    # Fallback: Just try to get the text after the prompt (if echoed)
-    if "tags{task end}:" in content:
-        parts = content.split("tags{task end}:")
-        if len(parts) > 1:
-            return parts[-1].strip()[:1000] # Safe limit
-            
-    return content[-500:].strip() # Return last chunk if all else fails
+    """Extracts summary from the raw model output (robust JSON and fallback parsing)."""
+    import ast
+
+    if not raw_output or not raw_output.strip():
+        return None
+
+    # 1) Try direct JSON
+    try:
+        payload = json.loads(raw_output)
+        if isinstance(payload, dict) and "summary" in payload:
+            return payload["summary"]
+    except Exception:
+        pass
+
+    # 2) Try to find first balanced JSON object in the text
+    def find_first_json_object(s):
+        start = None
+        depth = 0
+        for i, ch in enumerate(s):
+            if ch == '{':
+                if start is None:
+                    start = i
+                depth += 1
+            elif ch == '}' and start is not None:
+                depth -= 1
+                if depth == 0:
+                    return s[start:i+1]
+        return None
+
+    candidate = find_first_json_object(raw_output)
+    if candidate:
+        # try strict JSON
+        try:
+            payload = json.loads(candidate)
+            if isinstance(payload, dict) and "summary" in payload:
+                return payload["summary"]
+        except Exception:
+            # try Python literal (handles single quotes)
+            try:
+                payload = ast.literal_eval(candidate)
+                if isinstance(payload, dict) and "summary" in payload:
+                    return str(payload["summary"])
+            except Exception:
+                pass
+
+    # 3) Heuristic regex searches for summary fields (double or single quoted)
+    # "summary": "..."
+    m = re.search(r'"summary"\s*:\s*"([^"]+)"', raw_output, flags=re.IGNORECASE | re.DOTALL)
+    if m:
+        return m.group(1).strip()
+    # 'summary': '...'
+    m = re.search(r"'summary'\s*:\s*'([^']+)'", raw_output, flags=re.IGNORECASE | re.DOTALL)
+    if m:
+        return m.group(1).strip()
+    # summary: "..."
+    m = re.search(r'summary\s*:\s*"([^"]+)"', raw_output, flags=re.IGNORECASE | re.DOTALL)
+    if m:
+        return m.group(1).strip()
+    # summary: '...'
+    m = re.search(r"summary\s*:\s*'([^']+)'", raw_output, flags=re.IGNORECASE | re.DOTALL)
+    if m:
+        return m.group(1).strip()
+
+    # 4) Last resort: remove common noise and return last sizable chunk
+    cleaned = re.sub(r'\s+', ' ', raw_output).strip()
+    if len(cleaned) > 200:
+        return cleaned[-1000:].strip()
+    if len(cleaned) > 0:
+        return cleaned.strip()
+    return None
 
 def main():
     if not os.path.exists(LOCAL_TEMP_DIR):
@@ -194,27 +278,30 @@ def main():
             # 1. Push Prompt File
             remote_prompt = push_prompt_to_phone(article_content, article_num)
             
-            # 2. Run Inference
-            raw_out, logs = run_inference_on_phone(remote_prompt, model_file)
+            # 2. Run Inference (now uses JSON schema and pulls a JSON result)
+            summary_text, logs = run_inference_on_phone(remote_prompt, model_file, article_num)
             
             duration = time.time() - start_time
             
-            if raw_out:
-                summary = parse_summary_output(raw_out)
+            if summary_text:
+                summary = summary_text
                 print(f" Done ({duration:.2f}s)")
             else:
                 summary = "Error: Inference Failed"
                 print(" Failed.")
                 
-            # Cleanup phone file
-            subprocess.run(["adb", "shell", f"rm {remote_prompt}"], 
-                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            # Cleanup phone files (prompt + result)
+            try:
+                subprocess.run(["adb", "shell", f"rm {remote_prompt} {os.path.join(PHONE_TMP_DIR, f'summary_result_{article_num}.json')}"],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            except Exception:
+                pass
 
         except Exception as e:
             print(f" Error: {e}")
             summary = f"Error: {e}"
             logs = str(e)
-            raw_out = ""
+            summary_text = ""
 
         # Save Result
         results.append({
@@ -223,7 +310,7 @@ def main():
             "generated_summary": summary,
             "article_text": article_content,
             "generation_logs": logs,
-            "raw_model_output": raw_out
+            "raw_model_output": summary_text
         })
     
     # Save JSON
