@@ -239,6 +239,8 @@ def cleanup_remote(files_to_remove):
     subprocess.run(["adb", "shell", cmd], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def main():
+    random.seed(42)
+    
     # 1. Get Configuration
     num_topics, max_questions, model_file = get_user_config()
 

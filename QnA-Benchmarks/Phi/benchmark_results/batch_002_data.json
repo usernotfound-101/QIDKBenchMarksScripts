@@ -1,0 +1,172 @@
+[
+  {
+    "id": "q0006",
+    "question": "What is Warsaw known as in Polish?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "Warszawa",
+        "Warszawa",
+        "Warszawa"
+      ],
+      "answer_start": [
+        16,
+        16,
+        16
+      ]
+    }
+  },
+  {
+    "id": "q0007",
+    "question": "What is the largest city in Poland?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "Warsaw",
+        "Warsaw",
+        "Warsaw"
+      ],
+      "answer_start": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "id": "q0008",
+    "question": "What river runs through Warsaw?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "Vistula River",
+        "Vistula River",
+        "Vistula"
+      ],
+      "answer_start": [
+        129,
+        129,
+        129
+      ]
+    }
+  },
+  {
+    "id": "q0009",
+    "question": "How many people live in the greater metropolitan area?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "2.666 million residents",
+        "2.666 million",
+        "2.666 million"
+      ],
+      "answer_start": [
+        371,
+        371,
+        371
+      ]
+    }
+  },
+  {
+    "id": "q0010",
+    "question": "Where does Warsaw rank in terms of population in the EU?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "9th",
+        "9th",
+        "9th"
+      ],
+      "answer_start": [
+        419,
+        419,
+        419
+      ]
+    }
+  },
+  {
+    "id": "q0011",
+    "question": "What is the largest city of Poland?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "Warsaw",
+        "Warsaw",
+        "Warsaw"
+      ],
+      "answer_start": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "id": "q0012",
+    "question": "On what river does Warsaw stand?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "Vistula",
+        "Vistula River",
+        "Vistula"
+      ],
+      "answer_start": [
+        129,
+        129,
+        129
+      ]
+    }
+  },
+  {
+    "id": "q0013",
+    "question": "How far is Warsaw from the Baltic Sea?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "roughly 260 kilometres",
+        "260 kilometres",
+        "260 kilometres"
+      ],
+      "answer_start": [
+        167,
+        175,
+        175
+      ]
+    }
+  },
+  {
+    "id": "q0014",
+    "question": "How many residents does the greater metropolitan area have?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "2.666 million",
+        "2.666 million",
+        "2.666 million"
+      ],
+      "answer_start": [
+        371,
+        371,
+        371
+      ]
+    }
+  },
+  {
+    "id": "q0015",
+    "question": "What rank for most populous city in the European Union does Warsaw hold?",
+    "context": "Warsaw (Polish: Warszawa [varˈʂava] ( listen); see also other names) is the capital and largest city of Poland. It stands on the Vistula River in east-central Poland, roughly 260 kilometres (160 mi) from the Baltic Sea and 300 kilometres (190 mi) from the Carpathian Mountains. Its population is estimated at 1.740 million residents within a greater metropolitan area of 2.666 million residents, which makes Warsaw the 9th most-populous capital city in the European Union. The city limits cover 516.9 square kilometres (199.6 sq mi), while the metropolitan area covers 6,100.43 square kilometres (2,355.39 sq mi).",
+    "answers": {
+      "text": [
+        "9th",
+        "9th",
+        "9th"
+      ],
+      "answer_start": [
+        419,
+        419,
+        419
+      ]
+    }
+  }
+]

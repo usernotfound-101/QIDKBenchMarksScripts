@@ -1,0 +1,87 @@
+[
+  {
+    "id": "q0001",
+    "question": "Which newspaper defined southern California?",
+    "context": "In 1900, the Los Angeles Times defined southern California as including \"the seven counties of Los Angeles, San Bernardino, Orange, Riverside, San Diego, Ventura and Santa Barbara.\" In 1999, the Times added a newer county—Imperial—to that list.",
+    "answers": {
+      "text": [
+        "Los Angeles Times",
+        "the Los Angeles Times",
+        "Los Angeles Times"
+      ],
+      "answer_start": [
+        13,
+        9,
+        13
+      ]
+    }
+  },
+  {
+    "id": "q0002",
+    "question": "In which year did the newspaper define southern California?",
+    "context": "In 1900, the Los Angeles Times defined southern California as including \"the seven counties of Los Angeles, San Bernardino, Orange, Riverside, San Diego, Ventura and Santa Barbara.\" In 1999, the Times added a newer county—Imperial—to that list.",
+    "answers": {
+      "text": [
+        "1900",
+        "1900",
+        "1900"
+      ],
+      "answer_start": [
+        3,
+        3,
+        3
+      ]
+    }
+  },
+  {
+    "id": "q0003",
+    "question": "In which year did the newspaper change its previous definition?",
+    "context": "In 1900, the Los Angeles Times defined southern California as including \"the seven counties of Los Angeles, San Bernardino, Orange, Riverside, San Diego, Ventura and Santa Barbara.\" In 1999, the Times added a newer county—Imperial—to that list.",
+    "answers": {
+      "text": [
+        "1999",
+        "1999",
+        "1999"
+      ],
+      "answer_start": [
+        185,
+        185,
+        185
+      ]
+    }
+  },
+  {
+    "id": "q0004",
+    "question": "What was the newer county added to the list?",
+    "context": "In 1900, the Los Angeles Times defined southern California as including \"the seven counties of Los Angeles, San Bernardino, Orange, Riverside, San Diego, Ventura and Santa Barbara.\" In 1999, the Times added a newer county—Imperial—to that list.",
+    "answers": {
+      "text": [
+        "Imperial",
+        "Imperial",
+        "1999"
+      ],
+      "answer_start": [
+        222,
+        222,
+        185
+      ]
+    }
+  },
+  {
+    "id": "q0005",
+    "question": "How many counties initially made up the definition of southern California?",
+    "context": "In 1900, the Los Angeles Times defined southern California as including \"the seven counties of Los Angeles, San Bernardino, Orange, Riverside, San Diego, Ventura and Santa Barbara.\" In 1999, the Times added a newer county—Imperial—to that list.",
+    "answers": {
+      "text": [
+        "seven",
+        "seven",
+        "seven"
+      ],
+      "answer_start": [
+        77,
+        77,
+        77
+      ]
+    }
+  }
+]
