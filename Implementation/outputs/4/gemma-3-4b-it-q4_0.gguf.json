@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 24.115623474121094,
+  "response": {
+    "answers": [
+      {
+        "question": "Why is fluoric acid weak but etches glass?",
+        "answer": "Fluoric acid is weak because it doesn't readily donate a proton (H+), but it etches glass because it reacts with silicon dioxide, the main component of glass, to form a stable, glassy fluoride layer that dissolves the glass."
+      }
+    ]
+  }
+}

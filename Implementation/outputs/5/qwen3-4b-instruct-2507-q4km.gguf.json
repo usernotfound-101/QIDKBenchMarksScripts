@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 14.279625177383423,
+  "response": {
+    "answers": [
+      {
+        "question": "Tell me about the life cycle of rocks, starting from Igneous.",
+        "answer": "Rocks begin as magma or lava, which cools and solidifies to form igneous rocks. These rocks can then be weathered and eroded into sediments, which are compacted and cemented to form sedimentary rocks. Over time, sedimentary rocks may be buried and heated, turning them into metamorphic rocks. Finally, metamorphic rocks can melt and become magma again, completing the cycle back to igneous rocks."
+      }
+    ]
+  }
+}

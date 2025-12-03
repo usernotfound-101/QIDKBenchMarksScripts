@@ -1,0 +1,59 @@
+{
+  "faq_list": [
+    {
+      "index": 1,
+      "question": "What is the constant called pi?",
+      "answer": "Pi (π) is a mathematical constant representing the ratio of a circle's circumference to its diameter. It is an irrational number, meaning its decimal representation is infinite and non-repeating, approximately equal to 3.14159."
+    },
+    {
+      "index": 2,
+      "question": "Why do some people have dimples?",
+      "answer": "Dimples are generally caused by a genetic variation in facial muscle structure, specifically the zygomaticus major muscle. In people with dimples, this muscle is often bifid (split), causing the skin to indent when the muscle contracts during a smile."
+    },
+    {
+      "index": 3,
+      "question": "Why does something look smaller travelling at the speed of light?",
+      "answer": "This phenomenon is known as Lorentz contraction (or length contraction). According to Einstein's theory of special relativity, as an object moves at a velocity approaching the speed of light relative to an observer, its length appears to shorten in the direction of motion."
+    },
+    {
+      "index": 4,
+      "question": "Why is fluoric acid weak but etches glass?",
+      "answer": "Hydrofluoric acid (HF) is chemically 'weak' because it does not fully dissociate into ions in water due to the strong bond between hydrogen and fluorine. However, it etches glass because the fluoride ion has a specific, high affinity for silicon, allowing it to attack the silicon dioxide (SiO₂) in glass to form gaseous silicon tetrafluoride."
+    },
+    {
+      "index": 5,
+      "question": "Tell me about the life cycle of rocks, starting from Igneous.",
+      "answer": "Starting with Igneous rocks (formed from cooling magma/lava), the cycle proceeds as follows: Weathering and erosion break them into sediments; these sediments undergo compaction and cementation to form Sedimentary rocks; heat and pressure transform these into Metamorphic rocks; finally, extreme heat melts them back into magma, restarting the cycle."
+    },
+    {
+      "index": 6,
+      "question": "When did Rome fall and why?",
+      "answer": "The Western Roman Empire traditionally 'fell' in 476 CE when Odoacer deposed Emperor Romulus Augustulus. Causes included military overspending, reliance on mercenary troops, government corruption, economic instability (inflation), and persistent invasions by Germanic tribes."
+    },
+    {
+      "index": 7,
+      "question": "How many clauses does the Indian Constitution have?",
+      "answer": "The Indian Constitution originally had 395 Articles. Currently, due to various amendments, it has approximately 448 Articles, arranged in 25 Parts and 12 Schedules, making it the longest written national constitution in the world."
+    },
+    {
+      "index": 8,
+      "question": "What do you think about Spiderman?",
+      "answer": "Spider-Man is considered one of the most iconic superheroes in pop culture. Created by Stan Lee and Steve Ditko, the character is renowned for the archetype of the 'relatable hero'—a regular person dealing with everyday struggles alongside superhero responsibilities, famously summarized by the adage, 'With great power comes great responsibility.'"
+    },
+    {
+      "index": 9,
+      "question": "Why is it so important to check the growth of AI's in the modern age?",
+      "answer": "Monitoring AI growth is critical to ensure safety (alignment with human values), prevent bias and discrimination in algorithmic decision-making, mitigate economic disruption from job displacement, and protect against misuse in cyberwarfare or misinformation campaigns."
+    },
+    {
+      "index": 10,
+      "question": "Was Romeo and Juliet the best play Shakespear wrote?",
+      "answer": "While 'Romeo and Juliet' is likely Shakespeare's most famous and enduring romance, literary critics generally consider his later tragedies—specifically 'Hamlet', 'King Lear', and 'Macbeth'—to be his 'best' works in terms of psychological depth, structural complexity, and thematic weight."
+    },
+    {
+      "index": 11,
+      "question": "What do you think will happen in the future?",
+      "answer": "While the future is unpredictable, current trends suggest continued rapid advancement in technology (AI, biotechnology), a global focus on mitigating climate change and transitioning to renewable energy, and potential shifts in geopolitics and space exploration."
+    }
+  ]
+}

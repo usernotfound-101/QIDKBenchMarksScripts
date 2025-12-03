@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 31.763182878494263,
+  "response": {
+    "answers": [
+      {
+        "question": "Why is it so important to check the growth of AI's in the modern age?",
+        "answer": "It is crucial to monitor AI's development because rapid advancements could have unintended consequences for society, including job displacement, bias, and ethical dilemmas that need careful consideration."
+      }
+    ]
+  }
+}

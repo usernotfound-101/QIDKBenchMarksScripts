@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 11.575400114059448,
+  "response": {
+    "answers": [
+      {
+        "question": "What is the first stage in the rock cycle involving igneous rocks?",
+        "answer": "The first stage in the rock cycle involving igneous rocks is their formation through the cooling and solidification of magma or lava."
+      }
+    ]
+  }
+}

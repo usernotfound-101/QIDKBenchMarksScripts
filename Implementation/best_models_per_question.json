@@ -1,0 +1,156 @@
+[
+  {
+    "question_id": 1,
+    "question": "What is the constant called pi?",
+    "gold_answer": "Pi (π) is a mathematical constant representing the ratio of a circle's circumference to its diameter. It is an irrational number, meaning its decimal representation is infinite and non-repeating, approximately equal to 3.14159.",
+    "best_model": "qwen3-4b-instruct-2507-q4km.gguf",
+    "model_answer": "Pi is the ratio of a circle's circumference to its diameter.",
+    "metrics": {
+      "F1": 0.5,
+      "BERTScore_F1": 0.5,
+      "CarbonScore": 1.0,
+      "Inference_Time": 6.681719779968262,
+      "FinalScore": 0.11972965439203138
+    }
+  },
+  {
+    "question_id": 2,
+    "question": "Why do some people have dimples?",
+    "gold_answer": "Dimples are generally caused by a genetic variation in facial muscle structure, specifically the zygomaticus major muscle. In people with dimples, this muscle is often bifid (split), causing the skin to indent when the muscle contracts during a smile.",
+    "best_model": "Llama-3.2-3B-Instruct-Q5_K_S.gguf",
+    "model_answer": "Dimples are small indentations in the skin, typically found on the cheeks. They are caused by a combination of genetic and environmental factors, including the shape of the facial bones and the way the skin folds over the jawline.",
+    "metrics": {
+      "F1": 0.3076923076923077,
+      "BERTScore_F1": 0.3076923076923077,
+      "CarbonScore": 1.0,
+      "Inference_Time": 9.483318328857422,
+      "FinalScore": 0.07624724785169598
+    }
+  },
+  {
+    "question_id": 3,
+    "question": "Why does something look smaller travelling at the speed of light?",
+    "gold_answer": "This phenomenon is known as Lorentz contraction (or length contraction). According to Einstein's theory of special relativity, as an object moves at a velocity approaching the speed of light relative to an observer, its length appears to shorten in the direction of motion.",
+    "best_model": "Llama-3.2-3B-Instruct-Q5_K_S.gguf",
+    "model_answer": "According to Einstein's theory of special relativity, an object appears smaller to an observer when it is moving at the speed of light. This is because the object's length appears to contract in the direction of motion, a phenomenon known as length contraction.",
+    "metrics": {
+      "F1": 0.7674418604651162,
+      "BERTScore_F1": 0.7674418604651162,
+      "CarbonScore": 1.0,
+      "Inference_Time": 12.483922481536865,
+      "FinalScore": 0.07265158410967566
+    }
+  },
+  {
+    "question_id": 4,
+    "question": "Why is fluoric acid weak but etches glass?",
+    "gold_answer": "Hydrofluoric acid (HF) is chemically 'weak' because it does not fully dissociate into ions in water due to the strong bond between hydrogen and fluorine. However, it etches glass because the fluoride ion has a specific, high affinity for silicon, allowing it to attack the silicon dioxide (SiO₂) in glass to form gaseous silicon tetrafluoride.",
+    "best_model": "qwen3-4b-instruct-2507-q4km.gguf",
+    "model_answer": "Fluoric acid is weak because it only partially ionizes in water, meaning it doesn't release many hydrogen ions. However, it etches glass because it reacts with silicon dioxide (SiO₂) in glass to form volatile silicon tetrafluoride (SiF₄), which escapes, leaving a smooth surface.",
+    "metrics": {
+      "F1": 0.5102040816326531,
+      "BERTScore_F1": 0.5102040816326531,
+      "CarbonScore": 1.0,
+      "Inference_Time": 12.31399393081665,
+      "FinalScore": 0.06529819952572735
+    }
+  },
+  {
+    "question_id": 5,
+    "question": "Tell me about the life cycle of rocks, starting from Igneous.",
+    "gold_answer": "Starting with Igneous rocks (formed from cooling magma/lava), the cycle proceeds as follows: Weathering and erosion break them into sediments; these sediments undergo compaction and cementation to form Sedimentary rocks; heat and pressure transform these into Metamorphic rocks; finally, extreme heat melts them back into magma, restarting the cycle.",
+    "best_model": "phi-3.5-mini-instruct.Q4_K_M.gguf",
+    "model_answer": "The first stage in the rock cycle involving igneous rocks is their formation through the cooling and solidification of magma or lava.",
+    "metrics": {
+      "F1": 0.22535211267605632,
+      "BERTScore_F1": 0.22535211267605632,
+      "CarbonScore": 1.0,
+      "Inference_Time": 11.575400114059448,
+      "FinalScore": 0.05962133820602705
+    }
+  },
+  {
+    "question_id": 6,
+    "question": "When did Rome fall and why?",
+    "gold_answer": "The Western Roman Empire traditionally 'fell' in 476 CE when Odoacer deposed Emperor Romulus Augustulus. Causes included military overspending, reliance on mercenary troops, government corruption, economic instability (inflation), and persistent invasions by Germanic tribes.",
+    "best_model": "gemma-3-4b-it-q4_0.gguf",
+    "model_answer": "The Western Roman Empire fell in 476 CE, primarily due to a combination of factors including political instability, economic problems, and constant pressure from barbarian invasions.",
+    "metrics": {
+      "F1": 0.4000000000000001,
+      "BERTScore_F1": 0.4000000000000001,
+      "CarbonScore": 1.0,
+      "Inference_Time": 11.874258041381836,
+      "FinalScore": 0.06400399901630881
+    }
+  },
+  {
+    "question_id": 7,
+    "question": "How many clauses does the Indian Constitution have?",
+    "gold_answer": "The Indian Constitution originally had 395 Articles. Currently, due to various amendments, it has approximately 448 Articles, arranged in 25 Parts and 12 Schedules, making it the longest written national constitution in the world.",
+    "best_model": "Llama-3.2-3B-Instruct-Q5_K_S.gguf",
+    "model_answer": "The Indian Constitution has 395 clauses.",
+    "metrics": {
+      "F1": 0.25,
+      "BERTScore_F1": 0.25,
+      "CarbonScore": 1.0,
+      "Inference_Time": 8.112815618515015,
+      "FinalScore": 0.0862832378936931
+    }
+  },
+  {
+    "question_id": 8,
+    "question": "What do you think about Spiderman?",
+    "gold_answer": "Spider-Man is considered one of the most iconic superheroes in pop culture. Created by Stan Lee and Steve Ditko, the character is renowned for the archetype of the 'relatable hero'—a regular person dealing with everyday struggles alongside superhero responsibilities, famously summarized by the adage, 'With great power comes great responsibility.'",
+    "best_model": "qwen3-4b-instruct-2507-q4km.gguf",
+    "model_answer": "I think Spiderman is a great superhero. He's brave, kind, and always tries to do the right thing, even when it's hard.",
+    "metrics": {
+      "F1": 0.16666666666666666,
+      "BERTScore_F1": 0.16666666666666666,
+      "CarbonScore": 1.0,
+      "Inference_Time": 9.189751863479614,
+      "FinalScore": 0.07254457754360295
+    }
+  },
+  {
+    "question_id": 9,
+    "question": "Why is it so important to check the growth of AI's in the modern age?",
+    "gold_answer": "Monitoring AI growth is critical to ensure safety (alignment with human values), prevent bias and discrimination in algorithmic decision-making, mitigate economic disruption from job displacement, and protect against misuse in cyberwarfare or misinformation campaigns.",
+    "best_model": "qwen3-4b-instruct-2507-q4km.gguf",
+    "model_answer": "It is important to check the growth of AI because it can significantly impact society, the economy, and individual lives. Monitoring AI development ensures that it aligns with ethical standards and serves the public good.",
+    "metrics": {
+      "F1": 0.23188405797101447,
+      "BERTScore_F1": 0.23188405797101447,
+      "CarbonScore": 1.0,
+      "Inference_Time": 11.442035675048828,
+      "FinalScore": 0.060544613114523395
+    }
+  },
+  {
+    "question_id": 10,
+    "question": "Was Romeo and Juliet the best play Shakespear wrote?",
+    "gold_answer": "While 'Romeo and Juliet' is likely Shakespeare's most famous and enduring romance, literary critics generally consider his later tragedies—specifically 'Hamlet', 'King Lear', and 'Macbeth'—to be his 'best' works in terms of psychological depth, structural complexity, and thematic weight.",
+    "best_model": "qwen3-4b-instruct-2507-q4km.gguf",
+    "model_answer": "No, Romeo and Juliet was not the best play Shakespeare wrote. It is one of his most famous and beloved works, but opinions on which is his best vary widely.",
+    "metrics": {
+      "F1": 0.35294117647058826,
+      "BERTScore_F1": 0.35294117647058826,
+      "CarbonScore": 1.0,
+      "Inference_Time": 9.987881422042847,
+      "FinalScore": 0.0742075760884074
+    }
+  },
+  {
+    "question_id": 11,
+    "question": "What do you think will happen in the future?",
+    "gold_answer": "While the future is unpredictable, current trends suggest continued rapid advancement in technology (AI, biotechnology), a global focus on mitigating climate change and transitioning to renewable energy, and potential shifts in geopolitics and space exploration.",
+    "best_model": "qwen3-4b-instruct-2507-q4km.gguf",
+    "model_answer": "I think that technology will continue to advance rapidly, leading to more automation and smarter systems in daily life.",
+    "metrics": {
+      "F1": 0.14814814814814814,
+      "BERTScore_F1": 0.14814814814814814,
+      "CarbonScore": 1.0,
+      "Inference_Time": 9.1040620803833,
+      "FinalScore": 0.0724137482190261
+    }
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 15.06970739364624,
+  "response": {
+    "answers": [
+      {
+        "question": "Why is fluoric acid weak but etches glass?",
+        "answer": "Fluoric acid is weak because it is a weak acid, meaning it doesn't fully dissociate in water. However, when it comes into contact with glass, the fluoride ions can react with the silicon dioxide in the glass, causing it to etch or dissolve. This is because the fluoride ions are highly reactive and can form a strong bond with the silicon dioxide, leading to the etching process."
+      }
+    ]
+  }
+}

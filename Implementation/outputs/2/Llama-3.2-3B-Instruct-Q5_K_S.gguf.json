@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 9.483318328857422,
+  "response": {
+    "answers": [
+      {
+        "question": "Why do some people have dimples?",
+        "answer": "Dimples are small indentations in the skin, typically found on the cheeks. They are caused by a combination of genetic and environmental factors, including the shape of the facial bones and the way the skin folds over the jawline."
+      }
+    ]
+  }
+}

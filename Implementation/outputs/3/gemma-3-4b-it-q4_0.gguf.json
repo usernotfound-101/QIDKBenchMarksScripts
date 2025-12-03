@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 12.236069917678833,
+  "response": {
+    "answers": [
+      {
+        "question": "Why does something look smaller travelling at the speed of light?",
+        "answer": "Objects appear smaller when traveling at the speed of light because the distance between the observer and the object contracts in the direction of motion, a phenomenon known as length contraction."
+      }
+    ]
+  }
+}

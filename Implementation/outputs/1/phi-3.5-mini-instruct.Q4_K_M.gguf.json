@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 8.99542784690857,
+  "response": {
+    "answers": [
+      {
+        "question": "What is the constant called pi?",
+        "answer": "Pi is the mathematical constant representing the ratio of a circle's circumference to its diameter."
+      }
+    ]
+  }
+}

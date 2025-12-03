@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 12.8703293800354,
+  "response": {
+    "answers": [
+      {
+        "question": "Was Romeo and Juliet the best play Shakespeare wrote?",
+        "answer": "While Romeo and Juliet is one of Shakespeare's most famous and beloved tragedies, it is not definitively the best; his works encompass a wide range of genres and styles, and opinions on which is the 'best' can vary greatly."
+      }
+    ]
+  }
+}

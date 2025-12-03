@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 14.122633457183838,
+  "response": {
+    "answers": [
+      {
+        "question": "What do you think will happen in the future?",
+        "answer": "It's impossible to predict the future with certainty, but technological advancements and climate change are likely to significantly shape the world in the coming decades, potentially leading to both exciting innovations and considerable challenges."
+      }
+    ]
+  }
+}

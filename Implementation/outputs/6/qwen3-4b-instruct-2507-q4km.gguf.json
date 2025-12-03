@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 11.634963989257812,
+  "response": {
+    "answers": [
+      {
+        "question": "When did Rome fall and why?",
+        "answer": "Rome fell in the 5th century, specifically around 476 CE, when the last Roman emperor was deposed. This happened because of a combination of internal weaknesses, such as political instability and economic decline, and external pressures from invading tribes like the Visigoths and Vandals."
+      }
+    ]
+  }
+}

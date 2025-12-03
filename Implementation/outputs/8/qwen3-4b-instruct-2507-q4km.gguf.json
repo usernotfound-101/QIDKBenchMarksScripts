@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 9.189751863479614,
+  "response": {
+    "answers": [
+      {
+        "question": "What do you think about Spiderman?",
+        "answer": "I think Spiderman is a great superhero. He's brave, kind, and always tries to do the right thing, even when it's hard."
+      }
+    ]
+  }
+}

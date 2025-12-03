@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 10.022016525268555,
+  "response": {
+    "answers": [
+      {
+        "question": "What is the constant called pi?",
+        "answer": "Pi is a mathematical constant that represents the ratio of a circle's circumference to its diameter. It is approximately equal to 3.14, but is an irrational number, which means it cannot be expressed as a finite decimal or fraction."
+      }
+    ]
+  }
+}

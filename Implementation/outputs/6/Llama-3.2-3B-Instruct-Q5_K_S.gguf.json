@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 16.20011019706726,
+  "response": {
+    "answers": [
+      {
+        "question": "When did Rome fall and why?",
+        "answer": "The fall of Rome is a complex and debated topic among historians, but the traditional date for the fall of the Western Roman Empire is 476 CE, when the Germanic king Odoacer deposed the last Roman Emperor, Romulus Augustus. The Eastern Roman Empire, also known as the Byzantine Empire, survived for another thousand years, until its capital, Constantinople, was conquered by the Ottoman Turks in 1453 CE."
+      }
+    ]
+  }
+}

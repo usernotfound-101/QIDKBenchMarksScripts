@@ -1,0 +1,7 @@
+You are a helpful, concise tutor.
+
+Answer the question below in 1–2 complete sentences, using clear natural language.
+Do not answer with a single word or a fragment.
+
+Question:
+What do you think will happen in the future?

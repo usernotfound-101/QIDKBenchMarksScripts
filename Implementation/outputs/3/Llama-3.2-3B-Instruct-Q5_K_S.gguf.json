@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 12.483922481536865,
+  "response": {
+    "answers": [
+      {
+        "question": "Why does something look smaller travelling at the speed of light?",
+        "answer": "According to Einstein's theory of special relativity, an object appears smaller to an observer when it is moving at the speed of light. This is because the object's length appears to contract in the direction of motion, a phenomenon known as length contraction."
+      }
+    ]
+  }
+}

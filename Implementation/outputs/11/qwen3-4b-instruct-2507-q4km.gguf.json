@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 9.1040620803833,
+  "response": {
+    "answers": [
+      {
+        "question": "What do you think will happen in the future?",
+        "answer": "I think that technology will continue to advance rapidly, leading to more automation and smarter systems in daily life."
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 12.704565525054932,
+  "response": {
+    "answers": [
+      {
+        "question": "When did Rome fall and why?",
+        "answer": "Rome fell in 476 AD due to a combination of internal decay, barbarian invasions, and the sacking by the Germanic chieftain Odoacer, marking the end of the Western Roman Empire."
+      }
+    ]
+  }
+}

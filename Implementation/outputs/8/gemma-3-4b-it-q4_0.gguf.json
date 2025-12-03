@@ -1,0 +1,15 @@
+{
+  "inference_time_seconds": 17.90810990333557,
+  "response": {
+    "answers": [
+      {
+        "question": "What do you think about Spiderman?",
+        "answer": "I think Spider-Man is a fantastic superhero because he uses his powers responsibly and always puts the needs of others before his own, demonstrating true heroism."
+      },
+      {
+        "question": "What do you think about Spiderman?",
+        "answer": "Spider-Man is a beloved character known for his incredible abilities and his commitment to protecting the innocent, making him a popular and inspiring figure."
+      }
+    ]
+  }
+}

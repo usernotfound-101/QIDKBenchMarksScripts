@@ -1,0 +1,11 @@
+{
+  "inference_time_seconds": 13.04909896850586,
+  "response": {
+    "answers": [
+      {
+        "question": "Dimples are a genetic trait caused by variations in the structure of facial muscles, specifically the zygomaticus major muscle, which can create a dimpled appearance when it contracts.",
+        "answer": "Dimples are a hereditary feature resulting from the unique structure and contraction of facial muscles, particularly the zygomaticus major muscle."
+      }
+    ]
+  }
+}
